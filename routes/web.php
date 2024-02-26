@@ -45,3 +45,12 @@ Route::get('/contact', function () {
 Route::get('/home', function () {
     return Inertia::render('HomePage');
 })->name('home');
+
+Route::get('/login', function () {
+    return Inertia::render('Auth/Login');
+})->name('login');
+
+
+Route::get('/bar', function () {
+    return Inertia::render('Navbar');
+})->name('bar');

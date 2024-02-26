@@ -1,10 +1,12 @@
 <script setup>
 //import AppLayout from '@/Layouts/AppLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import AppLayout from '@/Layouts/AppLayout.vue';
 </script>
 
 <template>
   <Head title="Contact"></head>
+    <AppLayout></AppLayout>
     <!--<AppLayout> <br>-->
       <div class="container">
         <div class="grid-item" v-for="(person, index) in persons" :key="index">
