@@ -50,7 +50,18 @@ Route::get('/login', function () {
     return Inertia::render('Auth/Login');
 })->name('login');
 
+Route::get('/register', function () {
+    return Inertia::render('Auth/Register');
+})->name('register');
 
 Route::get('/bar', function () {
     return Inertia::render('Navbar');
 })->name('bar');
+
+Route::get('/carousel', function () {
+    return Inertia::render('Carousel');
+})->name('carousel');
+
+Route::get('/popular', function () {
+    return Inertia::render('popular');
+})->name('popular');
