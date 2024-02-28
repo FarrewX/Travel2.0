@@ -65,3 +65,18 @@ Route::get('/carousel', function () {
 Route::get('/popular', function () {
     return Inertia::render('popular');
 })->name('popular');
+
+Route::get('/profile-photos/{filename}', function ($filename) {
+    // กำหนด path ของโฟลเดอร์ที่เก็บรูปภาพโปรไฟล์
+    $path = storage_path('app/public/profile-photos/' . $filename);
+
+    // ตรวจสอบว่าไฟล์ภาพนั้นมีอยู่จริงหรือไม่
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    // อ่านไฟล์ภาพและส่งคืนเป็น response ประเภท image/jpeg หรืออื่น ๆ ตามประเภทของไฟล์ภาพ
+    return response()->file($path);
+});
+
+// php artisan storage:link

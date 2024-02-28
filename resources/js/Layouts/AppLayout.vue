@@ -3,26 +3,15 @@
 <script setup>
 import { ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
-import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+
 
 defineProps({
     title: String,
 });
-
-const showingNavigationDropdown = ref(false);
-
-const switchToTeam = (team) => {
-    router.put(route('current-team.update'), {
-        team_id: team.id,
-    }, {
-        preserveState: false,
-    });
-};
 
 const logout = () => {
     router.post(route('logout'));
@@ -58,14 +47,16 @@ const logout = () => {
             
             <form @submit.prevent="logout" v-if="$page.props.auth.user">
                 <div class="hidden sm:flex sm:items-center sm:ms-6">
+                  
+                  <!-- Profile Photo -->
+                  <img class="h-8 w-8 rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url.split('http://localhost/storage/').pop()">                  
+                  
 
-                <!-- Settings Dropdown -->
-                <div class="ms-3 relative">
+                  <!-- Settings Dropdown -->
+                  <div class="ms-3 relative">
                     <Dropdown align="right" width="48">
                         <template #trigger>
-                            <div @click="toggleProfileMenu" v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                <img class="h-8 w-8 rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
-                            </div>
+                            <div @click="toggleProfileMenu" v-if="$page.props.jetstream.name" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition"></div>
                             <span v-else class="inline-flex rounded-md">
                                 <div type="button" @click="toggleProfileMenu" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
                                     {{ $page.props.auth.user.name }}

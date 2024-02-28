@@ -7,6 +7,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import NavLink from '@/Components/NavLink.vue';
 
 defineProps({
     canResetPassword: Boolean,
@@ -81,9 +82,11 @@ const submit = () => {
                     Forgot your password?
                 </Link>
 
+                <NavLink class="mb-nav-btn" :href="route('register')">Register</NavLink>
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
                 </PrimaryButton>
+                
             </div>
         </form>
     </AuthenticationCard>
