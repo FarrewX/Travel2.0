@@ -10,6 +10,19 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 
+defineProps({
+    title: String,
+});
+
+const showingNavigationDropdown = ref(false);
+
+const switchToTeam = (team) => {
+    router.put(route('current-team.update'), {
+        team_id: team.id,
+    }, {
+        preserveState: false,
+    });
+};
 
 const logout = () => {
     router.post(route('logout'));
@@ -17,6 +30,7 @@ const logout = () => {
 </script>
 
 <template>
+  <Banner />
     <div class="nav">
       <div class="nav-inner">
         <NavLink style="font-size: 32px;" :href="route('home')">Travel Planner</NavLink>
