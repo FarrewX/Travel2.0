@@ -1,5 +1,3 @@
-<!--รูปโปรบัค-->
-
 <script setup>
 import { ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
@@ -8,6 +6,15 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 
+document.addEventListener('DOMContentLoaded', function() {
+    const menu_btn = document.querySelector('.hamburger');
+    const mobile_menu = document.querySelector('.mobile-nav');
+
+    menu_btn.addEventListener('click', function() {
+        menu_btn.classList.toggle('is-active');
+        mobile_menu.classList.toggle('is-active');
+    });
+});
 
 defineProps({
     title: String,
@@ -22,7 +29,7 @@ const logout = () => {
   <Banner />
     <div class="nav">
       <div class="nav-inner">
-        <NavLink style="font-size: 32px;" :href="route('home')">Travel Planner</NavLink>
+        <NavLink style="font-size: 32px; color: #000;" :href="route('home')">Travel Planner</NavLink>
         <div class="mobile-nav">
           <form @submit.prevent="logout" v-if="$page.props.auth.user">
             <DropdownLink as="button">Log Out</DropdownLink>
@@ -33,6 +40,7 @@ const logout = () => {
           </div>
           <NavLink class="mb-nav-btn" :href="route('home')" :active="route().current('home')">Home</NavLink>
           <NavLink class="mb-nav-btn" :href="route('Contact')" :active="route().current('Contact')">Contact</NavLink>
+          <NavLink class="mb-nav-btn" :href="route('popular')" :active="route().current('popular')">PopularPlaces</NavLink>
           <NavLink class="mb-nav-btn" :href="route('Planner')" :active="route().current('Planner')">Start</NavLink>
         </div>
 
@@ -103,6 +111,21 @@ const logout = () => {
     </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      showMenu: false,
+    };
+  },
+  methods: {
+    toggleMobileMenu() {
+      this.showMenu = !this.showMenu;
+    },  
+    }
+};
+</script>
+
 <style scoped>
 .nav {
  position: sticky;
@@ -118,10 +141,8 @@ const logout = () => {
  justify-content: space-between;
  align-items: center;
  padding: 0 16px;
-
- background-color: white;
- color: rgb(75, 72, 72);
- box-shadow: 0px 0.4px 7.5px rgb(121, 121, 121);
+ background:#E9F6FF;
+ box-shadow: 0px 0.4px 3.5px rgb(121, 121, 121);
 }
 
 
@@ -140,6 +161,7 @@ const logout = () => {
    color: transparent;
    -webkit-background-clip: text;
    background-clip: text;
+   
 }
 
 .nav-btn {
@@ -238,30 +260,112 @@ const logout = () => {
  padding: 15px;
 }
 
-@media (min-width: 1400px) {
- .mobile-nav {
-   display: none;
- }
- .hamburger {
-   display: none;
- }
+
+
+/* สำหรับคอมพิวเตอร์ (PC) */
+@media (min-width: 1200px) {
+  .hamburger {
+    display: none; /* ซ่อนปุ่ม hamburger สำหรับคอมพิวเตอร์ */
+  }
+  .nav-inner {
+    padding: 0 50px; /* เพิ่ม padding ใน navbar */
+  }
+  .links {
+    gap: 150px; /* เปลี่ยนระยะห่างระหว่างลิงก์ */
+  }
 }
-@media (max-width: 1400px) {
- .links {
-   display: none;
- }
- .nav-btn {
-   display: none;
- }
- .b-start {
-   display: none;
- }
- .s-l-btn {
-   display: none;
- }
- .mobile-nav {
-   height: 100%;
-   max-height: 1000px;
- }
+
+/* สำหรับแท็บเล็ต */
+@media (max-width: 1200px) {
+  .hamburger {
+    display: none; /* ซ่อนปุ่ม hamburger สำหรับแท็บเล็ต */
+  }
+  .nav-inner .nav-btn .mb-nav-btn {
+    padding: 0 50px; /* เพิ่ม padding ใน navbar */
+  }
+  .links {
+    gap: 150px; /* เปลี่ยนระยะห่างระหว่างลิงก์ */
+  }
+}
+@media (max-width: 1025px) {
+  .hamburger {
+    display: none; /* ซ่อนปุ่ม hamburger สำหรับแท็บเล็ต */
+  }
+  .nav-inner .nav-btn .mb-nav-btn {
+    padding: 0 50px; /* เพิ่ม padding ใน navbar */
+  }
+  .links {
+    gap: 80px; /* เปลี่ยนระยะห่างระหว่างลิงก์ */
+  }
+}
+@media (max-width: 900px) {
+  .hamburger {
+    display: none;
+  }
+  .nav-inner .nav-btn .mb-nav-btn {
+    padding: 0 30px; 
+  }
+  .links {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 860px) {
+  .hamburger {
+    display: none;
+  }
+  .nav-inner .nav-btn .mb-nav-btn {
+    padding: 0 50px; 
+  }
+  .links {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 770px) {
+  .nav-inner {
+    padding: 0 10px;
+  }
+  .links {
+    display: none;
+  }
+  .nav-btn {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+    left: 20%;
+  }
+}
+
+/* สำหรับสมาร์ทโฟน (แนวนอน) */
+@media (max-width: 600px) {
+  .nav-inner {
+    gap: 5px;
+  }
+  .links {
+    display: none;
+  }
+  .nav-btn {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+    left: 10%;
+  }
+}
+
+/*Mobile version - hidden hamburger menu*/
+
+@media screen and (max-width: 768px) {
+  .nav-inner {
+    padding: 0 5px;
+  }
+  .links {
+    display: none;
+  }
+  .nav-btn {
+    display: none;
+  }
 }
 </style>

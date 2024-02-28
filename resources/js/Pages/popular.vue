@@ -12,8 +12,8 @@ import { Head } from '@inertiajs/vue3';
   <div class="wrapper">
     <div v-for="(popular, index) in popularPlaces" :key="index">
       <div class="container">
-        <input type="radio" name="slide" :id="'c' + (index + 1)" checked>
-          <label :for="'c' + (index + 1)" class="cardpop" :style="{ backgroundImage: 'url(' + popular.image + ')' }">
+        <input type="radio" name="slide" :id="'c' + (index)" checked>
+          <label :for="'c' + (index)" class="cardpop" :style="{ backgroundImage: 'url(' + popular.image + ')' }">
             <div class="row">
                 <div class="icon">{{ popular.top }}</div>
                 <div class="description">
@@ -33,13 +33,13 @@ export default {
     return {
       popularPlaces: [
         {
-            top: 10,
+            top: '10',
             name: 'The Forbidden City',
             location: 'Beijing',
             image: 'https://www.homeexchange.com/blog/content/images/2023/09/most-visited-tourist-attraction-forbidden-city-1.png'
         },
         {
-            top: 9,
+            top: '9',
             name: 'Disneyland Park',
             location: 'Anaheim',
             image: 'https://www.homeexchange.com/blog/content/images/2023/09/most-visited-tourist-attraction-disneyland-anaheim.png'
@@ -166,7 +166,7 @@ input {
 }
 
 input:checked + label {
-    width: 400px;
+    width: 650px;
 }
 
 input:checked + label .description {
@@ -175,5 +175,30 @@ input:checked + label .description {
     background-color: rgba(117, 112, 112, 0.6);
     border-radius: 10%;
 }
+@media (max-width: 1400px) {
+    .wrapper{
+        width: 100%;
+        display: block;
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+    }
+}
+@media (max-width: 950px) {
+    .wrapper{
+        width: 100%;
+        display: block;
+        grid-template-columns: auto;
+        grid-template-rows: auto;
 
+    }
+}
+
+@media (max-width: 600px) {
+    .wrapper{
+        width: 100%;
+        display: block;
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+    }
+}
 </style>
