@@ -41,7 +41,6 @@ Route::get('/contact', function () {
     return Inertia::render('Contact');
 })->name('Contact');
 
-
 Route::get('/home', function () {
     return Inertia::render('HomePage');
 })->name('home');
@@ -53,10 +52,6 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return Inertia::render('Auth/Register');
 })->name('register');
-
-Route::get('/bar', function () {
-    return Inertia::render('Navbar');
-})->name('bar');
 
 Route::get('/carousel', function () {
     return Inertia::render('Carousel');

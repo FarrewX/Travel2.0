@@ -15,7 +15,7 @@ import { Head } from '@inertiajs/vue3';
               </a>
             </div>          
             <p class="card__name" style="font-size: 16px;">{{ person.name }}</p>
-            <p style="font-size: 16px;">{{ person.studentId }}</p>
+            <p class="card__name" style="font-size: 16px;">{{ person.studentId }}</p>
           </div>
         </div>
       </div>
@@ -69,29 +69,25 @@ export default {
 </script>
 
 <style scoped>
-body{
-  background-color: #f5f5f5;
-  border:solid red;
-}
-
 .container {
   padding-top: 20px;
   display: grid;
   grid-template-columns: 300px 300px 300px;
+  grid-template-rows: 250px 250px 100px;
   grid-gap: 30px;
   justify-content: center;
   align-items: center;
-  background-color: #f5f5f5;
+  background-color: #EEF5FF;
   font-family: 'Baloo Paaji 2', cursive;
   height: 100%;
   position: fixed;
 }
 
 .card {
-  background-color: #444649;
-  height: 18rem;
+  height: 15rem;
   border-radius: 5px;
   display: flex;
+  grid-template-columns: auto;
   flex-direction: column;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.7);
@@ -101,6 +97,7 @@ body{
 .card__name {
   text-align: center;
   justify-content: center;
+  color: black;
 }
 
 .card__image {
@@ -110,7 +107,7 @@ body{
   border-radius: 50%;
   border: 5px solid #272133;
   margin-top: 10px;
-  box-shadow: 0 10px 50px rgba(235, 25, 110, 1);
+  box-shadow: 0 10px 50px #176B87;
   filter: grayscale(100%);
   transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
@@ -131,7 +128,7 @@ body{
   .container{
     min-width: 100%;
     min-height: 100%;
-    grid-template-rows: 400px 300px;
+    grid-template-rows: 300px 300px;
   }
 }
 @media (max-width: 1025px) {

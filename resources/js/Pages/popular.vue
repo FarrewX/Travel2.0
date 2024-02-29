@@ -91,9 +91,7 @@ export default {
 };
 </script>
 
-<style>
-
-
+<style scoped>
 .wrapper {
     width: 100%;
     height: 70vh;
@@ -101,11 +99,12 @@ export default {
     align-items: center;
     justify-content: center;
 }
-
 .container {
     height: 400px;
     display: flex;
     flex-wrap: nowrap;
+    grid-template-columns: 300px;
+    justify-content: start;
 }
 
 .cardpop {
@@ -166,7 +165,7 @@ input {
 }
 
 input:checked + label {
-    width: 650px;
+    width: 600px;
 }
 
 input:checked + label .description {
@@ -175,30 +174,13 @@ input:checked + label .description {
     background-color: rgba(117, 112, 112, 0.6);
     border-radius: 10%;
 }
-@media (max-width: 1400px) {
+@media (max-width: 1390px) {
     .wrapper{
         width: 100%;
         display: block;
         grid-template-columns: auto;
         grid-template-rows: auto;
-    }
-}
-@media (max-width: 950px) {
-    .wrapper{
-        width: 100%;
-        display: block;
-        grid-template-columns: auto;
-        grid-template-rows: auto;
-
     }
 }
 
-@media (max-width: 600px) {
-    .wrapper{
-        width: 100%;
-        display: block;
-        grid-template-columns: auto;
-        grid-template-rows: auto;
-    }
-}
 </style>
