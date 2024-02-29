@@ -1,3 +1,5 @@
+<!--เก็บไว้เผื่อใช้-->
+
 <template>
     <div>
       <div class="">
@@ -98,6 +100,7 @@
   background-color: rgba(255, 255, 255, 0.0);
   top: 0;
   position: absolute;
+  width: 100%;
 }
 
   .link{

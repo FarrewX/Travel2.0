@@ -1,3 +1,5 @@
+<!--โทรศัพท์ดูได้แค่แนวนอน-->
+
 <template>
 <Head title="Planner"></head>
 <div class="container">
@@ -172,7 +174,7 @@ body {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767px) { /*ยังทำไม่เสร็จ  เล็กสุด 653-fold 667-SE 740-S8+ */
   #list {
     display: flexbox;
     width: 100%;
@@ -189,21 +191,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%; /* Full width on small screens */
+    width: 100%; 
   }
 
   .modal {
-    width: 100%; /* Full width on small screens */
+    width: 100%;
   }
 
   .card-container {
     display: flex;
-    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+    flex-wrap: wrap; 
     justify-content: center;
   }
 
   .card {
-    margin: 0 10px 20px; /* Add some spacing between cards */
+    margin: 0 10px 20px;
   }
 
   .list-title {
