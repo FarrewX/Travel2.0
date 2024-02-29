@@ -80,7 +80,7 @@ const clearPhotoFileInput = () => {
 </script>
 
 <template>
-    <FormSection @submitted="updateProfileInformation">
+    <FormSection @submitted="updateProfileInformation" class="card-select">
         <template #title>
             ข้อมูลโปรไฟล์
         </template>

@@ -35,16 +35,16 @@ const logout = () => {
           <form @submit.prevent="logout" v-if="$page.props.auth.user">
             
           </form> 
-          <div v-else>
-            <NavLink class="mb-nav-btn" :href="route('login')" :active="route().current('login')" >Login</NavLink>
-            <NavLink class="mb-nav-btn" :href="route('register')" :active="route().current('register')">Register</NavLink>
+          <div v-else class="log-reg">
+            <NavLink class="mb-nav-btn log-reg-btn" :href="route('login')" :active="route().current('login')" >Login</NavLink>
+            <NavLink class="mb-nav-btn log-reg-btn" :href="route('register')" :active="route().current('register')">Register</NavLink>
           </div>
-          <NavLink class="mb-nav-btn" :href="route('home')" :active="route().current('home')">Home</NavLink>
+          <br><br><NavLink class="mb-nav-btn" :href="route('home')" :active="route().current('home')">Home</NavLink>
           <NavLink class="mb-nav-btn" :href="route('Contact')" :active="route().current('Contact')">Contact</NavLink>
           <NavLink class="mb-nav-btn" :href="route('popular')" :active="route().current('popular')">PopularPlaces</NavLink>
           <NavLink class="mb-nav-btn" :href="route('Planner')" :active="route().current('Planner')">Start</NavLink> <br> <br>
 
-          <div v-if="$page.props.auth.user.name" class="open-ham" style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+          <div v-if="$page.props.auth.user" class="open-ham" style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
             <!-- Profile Photo -->
             <img class="h-10 w-10 rounded-full object-cover" style="grid-template-columns: auto;" :src="$page.props.auth.user.profile_photo_url.split('http://localhost/storage/').pop()">        
             <!-- Settings Dropdown in hambuger-->
@@ -297,7 +297,25 @@ export default {
  padding: 15px;
 }
 
+.log-reg{
+  display: grid;
+  width: 100%;
+  position:absolute;
+  top: 400px;
+  left: auto;
+  justify-content: center;
 
+}
+.log-reg-btn{
+  display: block;
+  gap: 10px;
+  width: 100px;
+  grid-template-columns: 90px 90px;
+  grid-template-rows: 40px 40px 40px;
+  background-color: rgb(121, 121, 121, 0.8);
+  color: white;
+  border: solid rgb(0, 0, 0);
+}
 
 /* สำหรับคอมพิวเตอร์ (PC) */
 @media (min-width: 1200px) {
@@ -374,7 +392,7 @@ export default {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 660px) {
   .nav-inner {
     padding: 0 10px;
   }

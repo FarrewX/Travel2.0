@@ -24,7 +24,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('home');
 
 Route::middleware([
     'auth:sanctum',
@@ -41,9 +41,6 @@ Route::get('/contact', function () {
     return Inertia::render('Contact');
 })->name('Contact');
 
-Route::get('/home', function () {
-    return Inertia::render('HomePage');
-})->name('home');
 
 Route::get('/login', function () {
     return Inertia::render('Auth/Login');

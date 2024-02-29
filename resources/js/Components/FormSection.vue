@@ -18,10 +18,10 @@ const hasActions = computed(() => !! useSlots().actions);
             </template>
         </SectionTitle>
 
-        <div class="mt-5 md:mt-0 md:col-span-2 " style="margin-right:200px ;">
+        <div class="mt-5 md:mt-0 md:col-span-2" style="margin: 10px;">
             <form @submit.prevent="$emit('submitted')">
                 <div
-                    class=" bg-blue-50 sm:p-6 " style="border: solid black;"
+                    class=" bg-blue-50 sm:p-6 " style="border: solid rgb(0, 0, 0); "
                     :class="hasActions ? 'sm:rounded-tl-md sm:rounded-tr-md' : 'sm:rounded-md'"
                 >
                     <div class="grid grid-cols-6 gap-6 " >
