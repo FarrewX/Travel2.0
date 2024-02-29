@@ -32,7 +32,9 @@ const updateProfileInformation = () => {
     form.post(route('user-profile-information.update'), {
         errorBag: 'updateProfileInformation',
         preserveScroll: true,
-        onSuccess: () => clearPhotoFileInput(),
+        onSuccess: () => {
+            clearPhotoFileInput();
+            window.location.reload();},
     });
 };
 
@@ -55,6 +57,7 @@ const updatePhotoPreview = () => {
         photoPreview.value = e.target.result;
     };
 
+
     reader.readAsDataURL(photo);
 };
 
@@ -71,6 +74,7 @@ const deletePhoto = () => {
 const clearPhotoFileInput = () => {
     if (photoInput.value?.value) {
         photoInput.value.value = null;
+        photoInput
     }
 };
 </script>
@@ -78,16 +82,16 @@ const clearPhotoFileInput = () => {
 <template>
     <FormSection @submitted="updateProfileInformation">
         <template #title>
-            Profile Information
+            ข้อมูลโปรไฟล์
         </template>
 
         <template #description>
-            Update your account's profile information and email address.
+            อัพเดทโปรไฟล์ของคุณ
         </template>
 
-        <template #form>
+        <template #form class="items-center justify-center" >
             <!-- Profile Photo -->
-            <div v-if="$page.props.jetstream.managesProfilePhotos" class="col-span-6 sm:col-span-4">
+            <div v-if="$page.props.jetstream.managesProfilePhotos" class="col-span-4 col-span-7 items-center justify-center" >
                 <!-- Profile Photo File Input -->
                 <input
                     id="photo"
@@ -100,8 +104,8 @@ const clearPhotoFileInput = () => {
                 <InputLabel for="photo" value="Photo" />
 
                 <!-- Current Profile Photo -->
-                <div v-show="! photoPreview" class="mt-2">
-                    <img :src="user.profile_photo_url" :alt="user.name" class="rounded-full h-20 w-20 object-cover">
+                <div v-show="! photoPreview" class="mt-2 flex items-center justify-center">
+                    <img :src="user.profile_photo_url" :alt="user.name" class="rounded-full h-40 w-40 object-cover ">
                 </div>
 
                 <!-- New Profile Photo Preview -->
@@ -111,9 +115,9 @@ const clearPhotoFileInput = () => {
                         :style="'background-image: url(\'' + photoPreview + '\');'"
                     />
                 </div>
-
+            <div class="flex items-center justify-center">
                 <SecondaryButton class="mt-2 me-2" type="button" @click.prevent="selectNewPhoto">
-                    Select A New Photo
+                    เลือกรูปใหม่
                 </SecondaryButton>
 
                 <SecondaryButton
@@ -122,15 +126,16 @@ const clearPhotoFileInput = () => {
                     class="mt-2"
                     @click.prevent="deletePhoto"
                 >
-                    Remove Photo
+                    ลบรูป
                 </SecondaryButton>
+            </div>
 
                 <InputError :message="form.errors.photo" class="mt-2" />
             </div>
 
             <!-- Name -->
-            <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="name" value="Name" />
+            <div class="col-span-6 sm:col-span-4 ">
+                <InputLabel for="name" value="name" />
                 <TextInput
                     id="name"
                     v-model="form.name"
@@ -157,7 +162,7 @@ const clearPhotoFileInput = () => {
 
                 <div v-if="$page.props.jetstream.hasEmailVerification && user.email_verified_at === null">
                     <p class="text-sm mt-2">
-                        Your email address is unverified.
+                        ที่อยู่อีเมลของคุณไม่ได้รับการยืนยัน
 
                         <Link
                             :href="route('verification.send')"
@@ -166,12 +171,12 @@ const clearPhotoFileInput = () => {
                             class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             @click.prevent="sendEmailVerification"
                         >
-                            Click here to re-send the verification email.
+                        คลิกที่นี่เพื่อส่งอีเมลยืนยันอีกครั้ง
                         </Link>
                     </p>
 
                     <div v-show="verificationLinkSent" class="mt-2 font-medium text-sm text-green-600">
-                        A new verification link has been sent to your email address.
+                        ลิงก์ยืนยันใหม่ได้ถูกส่งไปยังที่อยู่อีเมลของคุณแล้ว
                     </div>
                 </div>
             </div>
@@ -188,3 +193,7 @@ const clearPhotoFileInput = () => {
         </template>
     </FormSection>
 </template>
+
+<style>
+
+</style>

@@ -11,15 +11,15 @@ const emit = defineEmits(['confirmed']);
 defineProps({
     title: {
         type: String,
-        default: 'Confirm Password',
+        default: 'ยืนยันรหัสผ่าน',
     },
     content: {
         type: String,
-        default: 'For your security, please confirm your password to continue.',
+        default: 'เพื่อความปลอดภัยของคุณ โปรดยืนยันรหัสผ่านเพื่อดำเนินการต่อ',
     },
     button: {
         type: String,
-        default: 'Confirm',
+        default: 'ยืนยัน',
     },
 });
 
@@ -76,12 +76,12 @@ const closeModal = () => {
             <slot />
         </span>
 
-        <DialogModal :show="confirmingPassword" @close="closeModal">
+        <DialogModal :show="confirmingPassword" @close="closeModal" >
             <template #title>
                 {{ title }}
             </template>
 
-            <template #content>
+            <template #content >
                 {{ content }}
 
                 <div class="mt-4">
@@ -93,6 +93,7 @@ const closeModal = () => {
                         placeholder="Password"
                         autocomplete="current-password"
                         @keyup.enter="confirmPassword"
+                        
                     />
 
                     <InputError :message="form.error" class="mt-2" />
@@ -101,7 +102,7 @@ const closeModal = () => {
 
             <template #footer>
                 <SecondaryButton @click="closeModal">
-                    Cancel
+                    ยกเลิก
                 </SecondaryButton>
 
                 <PrimaryButton

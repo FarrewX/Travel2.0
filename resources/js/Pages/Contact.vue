@@ -69,6 +69,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .container {
   padding-top: 20px;
   display: grid;
@@ -77,10 +79,10 @@ export default {
   grid-gap: 30px;
   justify-content: center;
   align-items: center;
-  background-color: #EEF5FF;
   font-family: 'Baloo Paaji 2', cursive;
   height: 100%;
   position: fixed;
+  
 }
 
 .card {
@@ -250,6 +252,5 @@ export default {
     gap: 10px;
   }
 }
-
 
 </style>

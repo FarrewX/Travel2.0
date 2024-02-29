@@ -47,24 +47,25 @@ const submit = () => {
 
         <div class="mb-4 text-sm text-gray-600">
             <template v-if="! recovery">
-                Please confirm access to your account by entering the authentication code provided by your authenticator application.
+                โปรดยืนยันการเข้าถึงบัญชีของคุณโดยป้อนรหัสการตรวจสอบสิทธิ์ที่ได้รับจากแอปพลิเคชันตรวจสอบสิทธิ์ของคุณ
             </template>
 
             <template v-else>
-                Please confirm access to your account by entering one of your emergency recovery codes.
+                โปรดยืนยันการเข้าถึงบัญชีของคุณโดยป้อนรหัสกู้คืนฉุกเฉินรหัสใดรหัสหนึ่งของคุณ
             </template>
         </div>
 
         <form @submit.prevent="submit">
             <div v-if="! recovery">
-                <InputLabel for="code" value="Code" />
+                <InputLabel for="code" value="code" />
                 <TextInput
+                
                     id="code"
                     ref="codeInput"
                     v-model="form.code"
                     type="text"
                     inputmode="numeric"
-                    class="mt-1 block w-full"
+                    class="mt-1 block w-full" 
                     autofocus
                     autocomplete="one-time-code"
                 />
@@ -73,7 +74,7 @@ const submit = () => {
 
             <div v-else>
                 <InputLabel for="recovery_code" value="Recovery Code" />
-                <TextInput
+                <TextInput 
                     id="recovery_code"
                     ref="recoveryCodeInput"
                     v-model="form.recovery_code"
@@ -96,7 +97,7 @@ const submit = () => {
                 </button>
 
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
+                    เข้าสู่ระบบ
                 </PrimaryButton>
             </div>
         </form>

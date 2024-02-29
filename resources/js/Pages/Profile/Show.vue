@@ -20,7 +20,7 @@ defineProps({
         <div> <br>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight"
             style="text-align: center;">
-                Edit Profile
+                จัดการโปรไฟล์
             </h2>
         </div>
 
@@ -56,5 +56,5 @@ defineProps({
                 </template>
             </div>
         </div>
-    
+
 </template>

@@ -34,12 +34,12 @@ const submit = () => {
         </template>
 
         <div class="mb-4 text-sm text-gray-600">
-            This is a secure area of the application. Please confirm your password before continuing.
+            นี่คือพื้นที่ที่ปลอดภัยของแอปพลิเคชัน โปรดยืนยันรหัสผ่านของคุณก่อนดำเนินการต่อ        
         </div>
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="password" value="รหัสผ่าน" />
                 <TextInput
                     id="password"
                     ref="passwordInput"
@@ -55,7 +55,7 @@ const submit = () => {
 
             <div class="flex justify-end mt-4">
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Confirm
+                    ยืนยัน
                 </PrimaryButton>
             </div>
         </form>

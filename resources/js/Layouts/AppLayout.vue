@@ -5,16 +5,15 @@ import Banner from '@/Components/Banner.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
+import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
 
-document.addEventListener('DOMContentLoaded', function() {
+const toggleMobileMenu = () => {
     const menu_btn = document.querySelector('.hamburger');
     const mobile_menu = document.querySelector('.mobile-nav');
 
-    menu_btn.addEventListener('click', function() {
-        menu_btn.classList.toggle('is-active');
-        mobile_menu.classList.toggle('is-active');
-    });
-});
+    menu_btn.classList.toggle('is-active');
+    mobile_menu.classList.toggle('is-active');
+};
 
 defineProps({
     title: String,
@@ -29,11 +28,13 @@ const logout = () => {
   <Banner />
     <div class="nav">
       <div class="nav-inner">
-        <NavLink style="font-size: 32px; color: #000;" :href="route('home')">Travel Planner</NavLink>
+        <NavLink style="font-size: 32px; color: #000;" :href="route('home')">
+          <AuthenticationCardLogo />
+        </NavLink>
         <div class="mobile-nav">
           <form @submit.prevent="logout" v-if="$page.props.auth.user">
-            <DropdownLink as="button">Log Out</DropdownLink>
-          </form>
+            
+          </form> 
           <div v-else>
             <NavLink class="mb-nav-btn" :href="route('login')" :active="route().current('login')" >Login</NavLink>
             <NavLink class="mb-nav-btn" :href="route('register')" :active="route().current('register')">Register</NavLink>
@@ -41,15 +42,59 @@ const logout = () => {
           <NavLink class="mb-nav-btn" :href="route('home')" :active="route().current('home')">Home</NavLink>
           <NavLink class="mb-nav-btn" :href="route('Contact')" :active="route().current('Contact')">Contact</NavLink>
           <NavLink class="mb-nav-btn" :href="route('popular')" :active="route().current('popular')">PopularPlaces</NavLink>
-          <NavLink class="mb-nav-btn" :href="route('Planner')" :active="route().current('Planner')">Start</NavLink>
+          <NavLink class="mb-nav-btn" :href="route('Planner')" :active="route().current('Planner')">Start</NavLink> <br> <br>
+
+          <div v-if="$page.props.jetstream.name" class="open-ham" style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <!-- Profile Photo -->
+            <img class="h-10 w-10 rounded-full object-cover" style="grid-template-columns: auto;" :src="$page.props.auth.user.profile_photo_url.split('http://localhost/storage/').pop()">        
+            <!-- Settings Dropdown in hambuger-->
+            <Dropdown align="right" width="48">
+                        <template #trigger>
+                            <div @click="toggleProfileMenu" v-if="$page.props.jetstream.name" class="flex text-sm border-2 border-transparent focus:outline-none focus:border-gray-300 transition"></div>
+                            <span v-else class="inline-flex rounded-md">
+                                <div type="button" @click="toggleProfileMenu" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                                    {{ $page.props.auth.user.name }}
+                                    <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                  </div>
+                            </span>
+                        </template>
+
+                        <template #content>
+                            <!-- Account Management -->
+                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                Manage Account
+                            </div>
+
+                            <DropdownLink :href="route('profile.show')">
+                                Profile
+                            </DropdownLink>
+
+                            <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
+                                API Tokens
+                            </DropdownLink>
+
+                            <div class="border-t border-gray-200"></div>
+
+                            <!-- Authentication -->
+                            <form @submit.prevent="logout">
+                                <DropdownLink as="button">
+                                    Log Out
+                                </DropdownLink>
+                            </form>
+                        </template>
+                    </Dropdown>
+          </div>
         </div>
 
-        <button class="hamburger"><div class="bar"></div></button>
+        <button class="hamburger" @click="toggleMobileMenu"><div class="bar"></div></button>
         <div class="links">
           <NavLink :href="route('home')" :active="route().current('home')">Home</NavLink>
           <NavLink :href="route('Contact')" :active="route().current('Contact')">Contact</NavLink>
           <NavLink :href="route('popular')" :active="route().current('popular')">PopularPlaces</NavLink>
-          <NavLink class="nav-btn" :href="route('Planner')" :active="route().current('Planner')">Start</NavLink>
+          <NavLink :href="route('Planner')" :active="route().current('Planner')">Start</NavLink>
+
         </div>
         <div class="s-l-btn">
             
@@ -133,6 +178,7 @@ export default {
  left: 0;
  top: 0;
  width: 100%;
+ 
 }
 .nav-inner {
  height: 90px;
@@ -141,8 +187,9 @@ export default {
  justify-content: space-between;
  align-items: center;
  padding: 0 16px;
- background:#E9F6FF;
+ background: #c2e0f2;
  box-shadow: 0px 0.4px 3.5px rgb(121, 121, 121);
+ 
 }
 
 
@@ -151,17 +198,7 @@ export default {
  margin-right: 40px;
  display: flex;
  gap: 170px;
-}
-
-.logo {
- position: relative;
- font-weight: 700;
- font-size: 2em;
- background: linear-gradient(to top, #5f5659, #414040);
-   color: transparent;
-   -webkit-background-clip: text;
-   background-clip: text;
-   
+ 
 }
 
 .nav-btn {
@@ -254,7 +291,7 @@ export default {
  text-align: center;
  padding: 5px 16px;
  margin-top: 15px;
- background-color: rgb(255, 255, 255);
+ background-color: #95a617;
  text-decoration: none;
  border-radius: 10px;
  padding: 15px;
@@ -265,37 +302,46 @@ export default {
 /* สำหรับคอมพิวเตอร์ (PC) */
 @media (min-width: 1200px) {
   .hamburger {
-    display: none; /* ซ่อนปุ่ม hamburger สำหรับคอมพิวเตอร์ */
+    display: none; 
   }
   .nav-inner {
-    padding: 0 50px; /* เพิ่ม padding ใน navbar */
+    padding: 0 50px; 
   }
   .links {
-    gap: 150px; /* เปลี่ยนระยะห่างระหว่างลิงก์ */
+    gap: 150px;
+  }
+  .open-ham{
+    display: none;
   }
 }
 
 /* สำหรับแท็บเล็ต */
 @media (max-width: 1200px) {
   .hamburger {
-    display: none; /* ซ่อนปุ่ม hamburger สำหรับแท็บเล็ต */
+    display: none;
   }
   .nav-inner .nav-btn .mb-nav-btn {
-    padding: 0 50px; /* เพิ่ม padding ใน navbar */
+    padding: 0 50px;
   }
   .links {
-    gap: 150px; /* เปลี่ยนระยะห่างระหว่างลิงก์ */
+    gap: 150px;
+  }
+  .open-ham{
+    display: none;
   }
 }
 @media (max-width: 1025px) {
   .hamburger {
-    display: none; /* ซ่อนปุ่ม hamburger สำหรับแท็บเล็ต */
+    display: none;
   }
   .nav-inner .nav-btn .mb-nav-btn {
-    padding: 0 50px; /* เพิ่ม padding ใน navbar */
+    padding: 0 50px; 
   }
   .links {
-    gap: 80px; /* เปลี่ยนระยะห่างระหว่างลิงก์ */
+    gap: 80px;
+  }
+  .open-ham{
+    display: none;
   }
 }
 @media (max-width: 900px) {
@@ -308,6 +354,9 @@ export default {
   .links {
     gap: 40px;
   }
+  .open-ham{
+    display: none;
+  }
 }
 
 @media (max-width: 860px) {
@@ -315,14 +364,17 @@ export default {
     display: none;
   }
   .nav-inner .nav-btn .mb-nav-btn {
-    padding: 0 50px; 
+    padding: 0 30px; 
   }
   .links {
     gap: 30px;
   }
+  .open-ham{
+    display: none;
+  }
 }
 
-@media (max-width: 770px) {
+@media (max-width: 760px) {
   .nav-inner {
     padding: 0 10px;
   }
@@ -332,16 +384,19 @@ export default {
   .nav-btn {
     display: none;
   }
-  .hamburger {
+  .open-ham{
+    display:  none;
+  }
+
+  .hamburger{
     display: block;
-    left: 20%;
+    left: 15%;
   }
 }
 
-/* สำหรับสมาร์ทโฟน (แนวนอน) */
-@media (max-width: 600px) {
+@media (max-width: 380px) {
   .nav-inner {
-    gap: 5px;
+    padding: 0 10px;
   }
   .links {
     display: none;
@@ -349,23 +404,15 @@ export default {
   .nav-btn {
     display: none;
   }
-  .hamburger {
+  .open-ham{
+    display:  none;
+  }
+
+  .hamburger{
     display: block;
-    left: 10%;
+    left: 15%;
   }
 }
 
-/*Mobile version - hidden hamburger menu*/
 
-@media screen and (max-width: 768px) {
-  .nav-inner {
-    padding: 0 5px;
-  }
-  .links {
-    display: none;
-  }
-  .nav-btn {
-    display: none;
-  }
-}
 </style>

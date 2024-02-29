@@ -11,19 +11,13 @@ defineProps({
 });
 </script>
 
-<template>
+<template class="body">
     <Head title="Home"></head>
-    <!--<AppLayout title="Home">-->
         <AppLayout></AppLayout>
         <div>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Home Page
+                3 ป๋อง
             </h2>
         </div>
-
-    <!--</AppLayout>-->
 </template>
 
-<style>
-
-</style>

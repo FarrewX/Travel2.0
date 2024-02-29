@@ -107,29 +107,29 @@ const disableTwoFactorAuthentication = () => {
 <template>
     <ActionSection>
         <template #title>
-            Two Factor Authentication
+            การตรวจสอบสิทธิ์แบบสองปัจจัย
         </template>
 
         <template #description>
-            Add additional security to your account using two factor authentication.
+            เพิ่มความปลอดภัยเพิ่มเติมให้กับบัญชีของคุณโดยใช้การตรวจสอบสิทธิ์แบบสองปัจจัย
         </template>
 
         <template #content>
-            <h3 v-if="twoFactorEnabled && ! confirming" class="text-lg font-medium text-gray-900">
-                You have enabled two factor authentication.
+            <h3 v-if="twoFactorEnabled && ! confirming" class="text-lg font-medium text-gray-900" >
+                คุณได้เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัย
             </h3>
 
-            <h3 v-else-if="twoFactorEnabled && confirming" class="text-lg font-medium text-gray-900">
-                Finish enabling two factor authentication.
+            <h3 v-else-if="twoFactorEnabled && confirming" class="text-lg font-medium text-gray-900" >
+                เสร็จสิ้นการเปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัย
             </h3>
 
-            <h3 v-else class="text-lg font-medium text-gray-900">
-                You have not enabled two factor authentication.
+            <h3 v-else class="text-lg font-medium text-gray-900" >
+                คุณยังไม่ได้เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัย
             </h3>
 
             <div class="mt-3 max-w-xl text-sm text-gray-600">
                 <p>
-                    When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone's Google Authenticator application.
+                    เมื่อเปิดใช้งานการตรวจสอบสิทธิ์แบบสองปัจจัย คุณจะได้รับพร้อมท์ให้ใส่โทเค็นแบบสุ่มที่ปลอดภัยระหว่างการตรวจสอบสิทธิ์ คุณสามารถดึงโทเค็นนี้ได้จากแอปพลิเคชัน Google Authenticator ในโทรศัพท์ของคุณ
                 </p>
             </div>
 
@@ -137,11 +137,11 @@ const disableTwoFactorAuthentication = () => {
                 <div v-if="qrCode">
                     <div class="mt-4 max-w-xl text-sm text-gray-600">
                         <p v-if="confirming" class="font-semibold">
-                            To finish enabling two factor authentication, scan the following QR code using your phone's authenticator application or enter the setup key and provide the generated OTP code.
+                            หากต้องการเปิดใช้งานการตรวจสอบสิทธิ์แบบสองปัจจัยให้เสร็จสิ้น ให้สแกนโค้ด QR ต่อไปนี้โดยใช้แอปพลิเคชันตรวจสอบสิทธิ์ในโทรศัพท์ของคุณ หรือป้อนคีย์การตั้งค่าและระบุรหัส OTP ที่สร้างขึ้น
                         </p>
 
                         <p v-else>
-                            Two factor authentication is now enabled. Scan the following QR code using your phone's authenticator application or enter the setup key.
+                            เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยแล้ว สแกนรหัส QR ต่อไปนี้โดยใช้แอปพลิเคชันตรวจสอบสิทธิ์ในโทรศัพท์ของคุณหรือป้อนรหัสการตั้งค่า
                         </p>
                     </div>
 
@@ -175,7 +175,7 @@ const disableTwoFactorAuthentication = () => {
                 <div v-if="recoveryCodes.length > 0 && ! confirming">
                     <div class="mt-4 max-w-xl text-sm text-gray-600">
                         <p class="font-semibold">
-                            Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.
+                            เก็บรหัสกู้คืนเหล่านี้ไว้ในเครื่องมือจัดการรหัสผ่านที่ปลอดภัย สามารถใช้เพื่อกู้คืนการเข้าถึงบัญชีของคุณได้หากอุปกรณ์ตรวจสอบสิทธิ์แบบสองปัจจัยของคุณสูญหาย
                         </p>
                     </div>
 
@@ -189,9 +189,9 @@ const disableTwoFactorAuthentication = () => {
 
             <div class="mt-5">
                 <div v-if="! twoFactorEnabled">
-                    <ConfirmsPassword @confirmed="enableTwoFactorAuthentication">
-                        <PrimaryButton type="button" :class="{ 'opacity-25': enabling }" :disabled="enabling">
-                            Enable
+                    <ConfirmsPassword @confirmed="enableTwoFactorAuthentication" >
+                        <PrimaryButton type="button" :class="{ 'opacity-25': enabling }" :disabled="enabling" >
+                            ตรวจสอบ
                         </PrimaryButton>
                     </ConfirmsPassword>
                 </div>
@@ -205,7 +205,7 @@ const disableTwoFactorAuthentication = () => {
                             :class="{ 'opacity-25': enabling }"
                             :disabled="enabling"
                         >
-                            Confirm
+                            ยืนยัน
                         </PrimaryButton>
                     </ConfirmsPassword>
 
@@ -233,7 +233,7 @@ const disableTwoFactorAuthentication = () => {
                             :class="{ 'opacity-25': disabling }"
                             :disabled="disabling"
                         >
-                            Cancel
+                            ยกเลิก
                         </SecondaryButton>
                     </ConfirmsPassword>
 

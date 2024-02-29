@@ -104,7 +104,6 @@ export default {
     display: flex;
     flex-wrap: nowrap;
     grid-template-columns: 300px;
-    justify-content: start;
 }
 
 .cardpop {
@@ -174,6 +173,7 @@ input:checked + label .description {
     background-color: rgba(117, 112, 112, 0.6);
     border-radius: 10%;
 }
+
 @media (max-width: 1390px) {
     .wrapper{
         width: 100%;
@@ -182,5 +182,4 @@ input:checked + label .description {
         grid-template-rows: auto;
     }
 }
-
 </style>
