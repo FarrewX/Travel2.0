@@ -44,7 +44,7 @@ const logout = () => {
           <NavLink class="mb-nav-btn" :href="route('popular')" :active="route().current('popular')">PopularPlaces</NavLink>
           <NavLink class="mb-nav-btn" :href="route('Planner')" :active="route().current('Planner')">Start</NavLink> <br> <br>
 
-          <div v-if="$page.props.jetstream.name" class="open-ham" style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+          <div v-if="$page.props.auth.user.name" class="open-ham" style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
             <!-- Profile Photo -->
             <img class="h-10 w-10 rounded-full object-cover" style="grid-template-columns: auto;" :src="$page.props.auth.user.profile_photo_url.split('http://localhost/storage/').pop()">        
             <!-- Settings Dropdown in hambuger-->
@@ -390,7 +390,7 @@ export default {
 
   .hamburger{
     display: block;
-    left: 15%;
+    left: 25%;
   }
 }
 
@@ -410,7 +410,7 @@ export default {
 
   .hamburger{
     display: block;
-    left: 15%;
+    left: 20%;
   }
 }
 
