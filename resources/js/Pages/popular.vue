@@ -7,7 +7,7 @@ import { Head } from '@inertiajs/vue3';
   <Head title="Popular"></head>
   <AppLayout></AppLayout>
   <div> <br> <br>
-    <h2 style="text-align: center; font-size: larger;">Top 10 PopularPlaces</h2>
+    <h2 style="text-align: center; font-size: larger; font-weight: 800;">Top 10 PopularPlaces</h2>
   </div>
   <div class="wrapper">
     <div v-for="(popular, index) in popularPlaces" :key="index">

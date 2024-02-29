@@ -43,7 +43,7 @@ const logout = () => {
           <NavLink class="mb-nav-btn" :href="route('home')" :active="route().current('home')">Home</NavLink>
           <NavLink class="mb-nav-btn" :href="route('Contact')" :active="route().current('Contact')">Contact</NavLink>
           <NavLink class="mb-nav-btn" :href="route('popular')" :active="route().current('popular')">PopularPlaces</NavLink>
-          <NavLink class="mb-nav-btn" :href="route('Planner')" :active="route().current('Planner')">Start</NavLink> <br> <br>
+          <NavLink class="mb-nav-btn" :href="route('page')" :active="route().current('page')">Start</NavLink> <br> <br>
 
           <div v-if="$page.props.auth.user" class="open-ham" style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
             <!-- Profile Photo -->
@@ -94,7 +94,7 @@ const logout = () => {
           <NavLink :href="route('home')" :active="route().current('home')" style="color: #ffffff;">Home</NavLink>
           <NavLink :href="route('Contact')" :active="route().current('Contact')" style="color: #ffffff;">Contact</NavLink>
           <NavLink :href="route('popular')" :active="route().current('popular')" style="color: #ffffff;">PopularPlaces</NavLink>
-          <NavLink :href="route('Planner')" :active="route().current('Planner')" style="color: #ffffff;">Start</NavLink>
+          <NavLink :href="route('page')" :active="route().current('page')" style="color: #ffffff;">Start</NavLink>
 
         </div>
         <div class="s-l-btn">

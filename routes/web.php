@@ -32,7 +32,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/planner', function () {
-        return Inertia::render('Planner');
+        return Inertia::render('start/UserLocation');
     })->name('Planner');
     
 });
@@ -70,5 +70,9 @@ Route::get('/profile-photos/{filename}', function ($filename) {
     // อ่านไฟล์ภาพและส่งคืนเป็น response ประเภท image/jpeg หรืออื่น ๆ ตามประเภทของไฟล์ภาพ
     return response()->file($path);
 });
+
+Route::get('/page', function () {
+    return Inertia::render('start/UserLocation');
+})->name('page');
 
 // php artisan storage:link
