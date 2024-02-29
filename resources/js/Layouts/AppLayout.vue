@@ -39,7 +39,8 @@ const logout = () => {
             <NavLink class="mb-nav-btn log-reg-btn" :href="route('login')" :active="route().current('login')" >Login</NavLink>
             <NavLink class="mb-nav-btn log-reg-btn" :href="route('register')" :active="route().current('register')">Register</NavLink>
           </div>
-          <br><br><NavLink class="mb-nav-btn" :href="route('home')" :active="route().current('home')">Home</NavLink>
+          <br><br>
+          <NavLink class="mb-nav-btn" :href="route('home')" :active="route().current('home')">Home</NavLink>
           <NavLink class="mb-nav-btn" :href="route('Contact')" :active="route().current('Contact')">Contact</NavLink>
           <NavLink class="mb-nav-btn" :href="route('popular')" :active="route().current('popular')">PopularPlaces</NavLink>
           <NavLink class="mb-nav-btn" :href="route('Planner')" :active="route().current('Planner')">Start</NavLink> <br> <br>
@@ -51,8 +52,8 @@ const logout = () => {
             <Dropdown align="right" width="48">
                         <template #trigger>
                             <div @click="toggleProfileMenu" v-if="$page.props.jetstream.name" class="flex text-sm border-2 border-transparent focus:outline-none focus:border-gray-300 transition"></div>
-                            <span v-else class="inline-flex rounded-md">
-                                <div type="button" @click="toggleProfileMenu" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                            <span v-else class="inline-flex rounded-md dropdown-btn">
+                                <div type="button" @click="toggleProfileMenu" class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-md focus:outline-none transition ease-in-out duration-150">
                                     {{ $page.props.auth.user.name }}
                                     <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -90,10 +91,10 @@ const logout = () => {
 
         <button class="hamburger" @click="toggleMobileMenu"><div class="bar"></div></button>
         <div class="links">
-          <NavLink :href="route('home')" :active="route().current('home')">Home</NavLink>
-          <NavLink :href="route('Contact')" :active="route().current('Contact')">Contact</NavLink>
-          <NavLink :href="route('popular')" :active="route().current('popular')">PopularPlaces</NavLink>
-          <NavLink :href="route('Planner')" :active="route().current('Planner')">Start</NavLink>
+          <NavLink :href="route('home')" :active="route().current('home')" style="color: #ffffff;">Home</NavLink>
+          <NavLink :href="route('Contact')" :active="route().current('Contact')" style="color: #ffffff;">Contact</NavLink>
+          <NavLink :href="route('popular')" :active="route().current('popular')" style="color: #ffffff;">PopularPlaces</NavLink>
+          <NavLink :href="route('Planner')" :active="route().current('Planner')" style="color: #ffffff;">Start</NavLink>
 
         </div>
         <div class="s-l-btn">
@@ -110,8 +111,8 @@ const logout = () => {
                     <Dropdown align="right" width="48">
                         <template #trigger>
                             <div @click="toggleProfileMenu" v-if="$page.props.jetstream.name" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition"></div>
-                            <span v-else class="inline-flex rounded-md">
-                                <div type="button" @click="toggleProfileMenu" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                            <span v-else class="inline-flex rounded-md dropdown-btn">
+                                <div type="button" @click="toggleProfileMenu" class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-md focus:outline-none transition ease-in-out duration-150">
                                     {{ $page.props.auth.user.name }}
                                     <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -120,7 +121,7 @@ const logout = () => {
                             </span>
                         </template>
 
-                        <template #content>
+                        <template #content style="background-color: linear-gradient(to right, #5f5659, #414040); ">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 Manage Account
@@ -187,8 +188,8 @@ export default {
  justify-content: space-between;
  align-items: center;
  padding: 0 16px;
- background: #c2e0f2;
- box-shadow: 0px 0.4px 3.5px rgb(121, 121, 121);
+ background-image: linear-gradient(to right, #78d3e6, #2b668e);
+ box-shadow: 0px 0.4px 3.5px rgb(46, 98, 219);
  
 }
 
@@ -210,7 +211,7 @@ export default {
  width: 100px;
  display: inline-block;
  padding: 5px 0px;
- background-image: linear-gradient(to right, #5f5659, #414040);
+ background-image: linear-gradient(to right, #a79678, #646337);
  border-radius: 8px;
  color: #fff;
  font-size: 18px;
@@ -274,9 +275,17 @@ export default {
  width: 100%;
  height: 100vh;
  display: block;
- background-color: rgba(235, 235, 235, 0.8);
+ background-color:linear-gradient(to right, #62e4c3, #2c7361);
  padding-top: 40px;
- transition: 0.4s;
+ color:linear-gradient(to right, #000000, #ffffff);
+ appearance: none;
+ outline: none;
+ border: none;
+ text-decoration: none;
+ border-radius: 10px;
+ border-radius: 8px;
+ box-shadow: 3px 3px rgba(1, 87, 74, 0.4);
+ transition: 0.4s ease-out;
 }
 
 .mobile-nav.is-active {
@@ -291,10 +300,17 @@ export default {
  text-align: center;
  padding: 5px 16px;
  margin-top: 15px;
- background-color: #95a617;
+ background-image: linear-gradient(to right, #5ad6b7, #2c7361);
+ color:white;
+ appearance: none;
+ outline: none;
+ border: none;
  text-decoration: none;
  border-radius: 10px;
  padding: 15px;
+ border-radius: 8px;
+ box-shadow: 3px 3px rgba(1, 87, 74, 0.4);
+ transition: 0.4s ease-out;
 }
 
 .log-reg{
@@ -314,7 +330,31 @@ export default {
   grid-template-rows: 40px 40px 40px;
   background-color: rgb(121, 121, 121, 0.8);
   color: white;
+  border: solid rgb(0, 0, 0); /*............ */
+  appearance: none;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  background-image: linear-gradient(to right, #a79678, #646337);
+  border-radius: 8px;
+  color: #fff;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+  transition: 0.4s ease-out;
+}
+
+.dropdown-btn{
   border: solid rgb(0, 0, 0);
+  appearance: none;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  background-image: linear-gradient(to right, #a79678, #646337);
+  border-radius: 8px;
+  color: #fff;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+  transition: 0.4s ease-out;
 }
 
 /* สำหรับคอมพิวเตอร์ (PC) */
@@ -432,5 +472,10 @@ export default {
   }
 }
 
+</style>
 
+<style>
+body{
+  background-color:#f8f3e6;
+}
 </style>
