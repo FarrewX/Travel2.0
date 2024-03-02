@@ -3,7 +3,7 @@
     import { Swiper, SwiperSlide } from 'swiper/vue'
     
     import AppLayout from '@/Layouts/AppLayout.vue';
-    // Import Swiper styles
+    //Import Swiper styles
     import 'swiper/css'
 
     import 'swiper/css/effect-coverflow'
@@ -27,13 +27,28 @@
 </script>
 
 <template>
+
+  <AppLayout />
     <div class="bg">
-      <AppLayout />
-      <img class="bg-img" src="https://www.tripsavvy.com/thmb/W15c8cb27ysbljeTe-Wyg36wFGk=/4000x2667/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-532063967-58b4699c5f9b586046264029.jpg" alt="">
+     
+      <img class="bg-img" src="https://wallpapercrafter.com/desktop1/630619-nature-pier-lake-mountain-calm-stars-night-2K.jpg" alt="">
       <div class="content absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div class="Ttext">
           <h1>Travel Planer</h1>
           <h2>Make your own Travel!</h2><br><br><br><br><br>
+          <button
+              type="button"
+              class="inline-block rounded border-2 border-white px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:border-white hover:bg-neutral-500 hover:bg-opacity-10 hover:text-white focus:border-white focus:text-white focus:outline-none focus:ring-0 active:border-white active:text-white dark:border-white dark:text-white dark:hover:border-white dark:hover:bg-neutral-100 dark:hover:bg-opacity-10 dark:hover:text-white dark:focus:border-white dark:focus:text-white dark:active:border-white dark:active:text-white"
+  data-te-ripple-init>
+              Get Start
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        viewBox="0 0 24 24" class="w-6 h-6 ml-2">
+        <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+    </svg>
+          </button>
+        </div>
+        <div>
+          
         </div>
         <div class="carousel">
           <swiper
@@ -72,6 +87,9 @@
 
 }
 
+.bg-img{
+  filter: brightness(50%);
+}
 
 
 .video-bg {
@@ -112,7 +130,7 @@
 
 .carousel {
   position: relative;
-  max-width: 900px;
+  max-width: 700px;
   height: auto;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.25);
@@ -161,10 +179,10 @@ body {
   border-radius: 10px;
   -webkit-box-reflect: below 1px linear-gradient(transparent,transparent,#0003);
 }
-.bg-img{
+.bg-img {
     width: 100%;
-    max-height: 99%;
-    height: 43.6rem;
+    height: 100vh;
+    object-fit: cover;
 }
 
 @media (max-width: 1500px) {
@@ -183,7 +201,7 @@ body {
     right: 0;
   }
 .swiper-slide {
-    width: 300px; /* ปรับขนาดของ Carousel เมื่อหน้าจอถูกย่อลง */
+    width: 300px; 
     height: 300px;
   }
   .Ttext {
@@ -194,11 +212,12 @@ body {
     top: 20px; 
     left: 50%;
     transform: translateX(-50%);
-    border: solid red; /* เพิ่มเส้นขอบสีแดงเพื่อแสดงตำแหน่งของ Ttext */
+    border: solid red; 
     text-align: center;
-    position: relative; /* เพิ่ม property position และกำหนดค่าเป็น relative */
-    z-index: 2; /* กำหนดค่า z-index เพื่อให้ Ttext อยู่ด้านหน้าของ Carousel */
+    position: relative; 
+    z-index: 2; 
   }
 }
 
 </style>
+

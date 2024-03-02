@@ -399,7 +399,7 @@ import { Head } from '@inertiajs/vue3';
                 });
             },
             getAddressGeo(ad) {
-                axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${ad}&key=API`)
+                axios.get(`/geocode?address=${encodeURIComponent(ad)}`)
                 .then(response => {
                     if(response.data.error_message) {
                         console.log(response.data.error_message);

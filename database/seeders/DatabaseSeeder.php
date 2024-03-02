@@ -22,11 +22,8 @@ class DatabaseSeeder extends Seeder
 
         DB::table('details')
         ->insert([
-            'id' => '1111111111',
-            'first_name' => 'เจษฎา',
-            'last_name' => 'พรมโสภา',
-            'first_name_en' => 'Jesada',
-            'last_name_en' => 'Promsopa',
+            'user_id' => '1111111111',
+            'name' => 'เจษฎา พรมโสภา',
             'idcard' => '1234567890123',
             'birthdate' => fake()->date,
             'age' => fake()->numberBetween(20, 80),

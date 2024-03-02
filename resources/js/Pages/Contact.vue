@@ -5,7 +5,7 @@ import { Head } from '@inertiajs/vue3';
 
 <template>
   <Head title="Contact"></head>
-    <AppLayout></AppLayout>
+    <AppLayout />
       <div class="container">
         <div class="grid-item" v-for="(person, index) in persons" :key="index">
           <div class="card">
@@ -14,8 +14,8 @@ import { Head } from '@inertiajs/vue3';
                 <img :src="person.imageSrc" alt="Person" class="card__image">
               </a>
             </div>          
-            <p class="card__name" style="font-size: 16px;">{{ person.name }}</p>
-            <p class="card__name" style="font-size: 16px;">{{ person.studentId }}</p>
+            <p class="card__name" style="font-size: 17px;">{{ person.name }}</p>
+            <p class="card__name" style="font-size: 17px;">{{ person.studentId }}</p>
           </div>
         </div>
       </div>
@@ -79,10 +79,9 @@ export default {
   grid-gap: 30px;
   justify-content: center;
   align-items: center;
-  font-family: 'Baloo Paaji 2', cursive;
-  height: 100%;
   position: fixed;
-  
+  color: white;
+  font-weight: bolder;
 }
 
 .card {
@@ -94,12 +93,13 @@ export default {
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.7);
   color: white;
+  z-index: 2;
 }
 
 .card__name {
   text-align: center;
   justify-content: center;
-  color: black;
+  color: white;
 }
 
 .card__image {

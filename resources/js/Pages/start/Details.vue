@@ -40,6 +40,7 @@
     
     <!-- Display other details as needed -->
     <button class="btn" @click="closeModal">Close</button>
+    <button @click="submitForm">Proceed</button>
   </div>
 </template>
 
@@ -51,13 +52,33 @@ export default {
       firstName: '',
       lastName: '',
       cost: 0,
-      date: '',
-      backDate: '',
+      depDate: '', 
+      returnDate: '',
     };
   },
   methods: {
     closeModal() {
-      this.$emit('close-modal'); // Emitting the event
+      this.$emit('close-modal'); 
+    },
+    async submitForm() {
+      try {
+
+        const response = await axios.put('/api/submit-data', {
+          first_name: this.firstName,
+          last_name: this.lastName,
+          cost: this.cost,
+          depDate: this.depDate,
+          returnDate: this.returnDate,
+          favPlaces: this.favPlaces,
+          selected_place_name: this.selectedPlaceName,
+          detailsData: this.detailsData,
+        });
+        
+        console.log(response);
+
+      } catch (error) {
+        console.error('Error submitting data:', error);
+      }
     },
   },
 };

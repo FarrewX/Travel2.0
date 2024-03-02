@@ -180,6 +180,7 @@ input:checked + label .description {
         display: block;
         grid-template-columns: auto;
         grid-template-rows: auto;
+        overflow-y: auto;
     }
 }
 </style>

@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @import 'swiper/css/bundle';
 
 [x-cloak] {
@@ -12,3 +13,4 @@
     font-weight: 400;
     font-style: normal;
   }
+

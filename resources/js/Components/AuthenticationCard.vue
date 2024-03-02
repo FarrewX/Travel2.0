@@ -1,6 +1,6 @@
 <template>
     <div class="backg min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-cover relative">
-      <div class="absolute inset-0" style="background-image: url('https://tatapi.tourismthailand.org/tatfs/Image/CustomPOI/Picture/P03002360_1.jpeg'); background-size: cover; filter: blur(20px);">
+      <div class="absolute inset-0" style="background-image: url('https://a.cdn-hotels.com/gdcs/production183/d1163/98f4f875-b4db-445b-ab7b-c5d07b63838e.jpg?impolicy=fcrop&w=800&h=533&q=medium'); background-size: cover; filter: blur(20px); filter: brightness(60%);">
       </div>
   
       <div style="z-index: 1;">

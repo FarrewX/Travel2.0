@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DetailsController;
+use App\Http\Controllers\UserLocation;
+use App\Http\Controllers\FavPlaceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/details', [DetailsController::class, 'index']);
-Route::get('/details/{id}', [DetailsController::class, 'show']);
+Route::get('/favplace', [FavPlaceController::class, 'show']);
+
+Route::put('/submit-data', [UserLocation::class, 'store'])->name('submit-data');

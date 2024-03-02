@@ -71,8 +71,21 @@ Route::get('/profile-photos/{filename}', function ($filename) {
     return response()->file($path);
 });
 
-Route::get('/detailpage', function () {
+Route::middleware('auth:sanctum')->get('/detailpage', function () {
     return Inertia::render('Reserve');
 })->name('detailpage');
 
+Route::get('/UX', function () {
+    return Inertia::render('UX/1');
+})->name('UX');
 // php artisan storage:link
+
+Route::middleware('auth:sanctum')->get('/geocode', function () {
+    $response = Http::get('https://maps.googleapis.com/maps/api/geocode/json', [
+        'address' => request('address'),
+        'key' => config('services.google.maps.api_key'), // Replace with your API key
+        
+    ]);
+
+    return $response->json();
+});

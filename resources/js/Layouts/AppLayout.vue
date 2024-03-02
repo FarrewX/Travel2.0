@@ -1,11 +1,11 @@
 <script setup>
-import { ref } from 'vue';
-import { Head, Link, router } from '@inertiajs/vue3';
-import Banner from '@/Components/Banner.vue';
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
-import NavLink from '@/Components/NavLink.vue';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
+  import { ref } from 'vue';
+  import { Head, Link, router } from '@inertiajs/vue3';
+  import Banner from '@/Components/Banner.vue';
+  import Dropdown from '@/Components/Dropdown.vue';
+  import DropdownLink from '@/Components/DropdownLink.vue';
+  import NavLink from '@/Components/NavLink.vue';
+  import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
 
 const toggleMobileMenu = () => {
     const menu_btn = document.querySelector('.hamburger');
@@ -18,6 +18,7 @@ const toggleMobileMenu = () => {
 const logout = () => {
     router.post(route('logout'));
 };
+
 </script>
 
 <template>
@@ -39,11 +40,12 @@ const logout = () => {
           <NavLink class="mb-nav-btn" :href="route('home')" :active="route().current('home')">Home</NavLink>
           <NavLink class="mb-nav-btn" :href="route('Contact')" :active="route().current('Contact')">Contact</NavLink>
           <NavLink class="mb-nav-btn" :href="route('popular')" :active="route().current('popular')">PopularPlaces</NavLink>
-          <NavLink class="mb-nav-btn" :href="route('page')" :active="route().current('page')">Start</NavLink> <br> <br>
+          <NavLink class="mb-nav-btn" :href="route('page')" :active="route().current('page')">Start</NavLink>
+          <NavLink class="mb-nav-btn" :href="route('detailpage')" :active="route().current('detailpage')">Details</NavLink> <br> <br>
 
           <div v-if="$page.props.auth.user" class="open-ham" style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
             <!-- Profile Photo -->
-            <img class="h-20 w-20 rounded-full object-cover" style="grid-template-columns: auto;" :src="$page.props.auth.user.profile_photo_url.split('http://localhost/storage/').pop()">        
+            <img class="h-20 w-20 rounded-full object-cover" style="grid-template-columns: auto;" :src="$page.props.auth.user.profile_photo_url.split('http://127.0.0.1:8000/storage/').pop()">        
             <!-- Settings Dropdown in hambuger-->
             <Dropdown align="right" width="48">
                         <template #trigger>
@@ -91,6 +93,7 @@ const logout = () => {
           <NavLink :href="route('Contact')" :active="route().current('Contact')" style="color: #ffffff;">Contact</NavLink>
           <NavLink :href="route('popular')" :active="route().current('popular')" style="color: #ffffff;">PopularPlaces</NavLink>
           <NavLink :href="route('page')" :active="route().current('page')" style="color: #ffffff;">Start</NavLink>
+          <NavLink :href="route('detailpage')" :active="route().current('detailpage')" style="color: #ffffff;">Details</NavLink>
 
         </div>
         <div class="s-l-btn">
@@ -99,7 +102,7 @@ const logout = () => {
                 <div class="hidden sm:flex sm:items-center sm:ms-6">
                   
                   <!-- Profile Photo -->
-                  <img class="h-8 w-8 rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url.split('http://localhost/storage/').pop()">                  
+                  <img class="h-8 w-8 rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url.split('http://127.0.0.1:8000/storage/').pop()">                  
                   
 
                   <!-- Settings Dropdown -->
@@ -183,6 +186,20 @@ const logout = () => {
         </div>
       </div>
     </div>
+    <div class="area">
+      <ul class="circles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+  </ul>
+</div>
 </template>
 
 <script>
@@ -201,14 +218,15 @@ export default {
 </script>
 
 <style scoped>
+
 .nav {
- position: sticky;
- z-index: 90;
+ z-index: 99;
  left: 0;
  top: 0;
  width: 100%;
- 
+ overflow-y: auto;
 }
+
 .nav-inner {
  height: 90px;
  width: 100%;
@@ -218,7 +236,7 @@ export default {
  padding: 0 16px;
  background-image: linear-gradient(to right, #78d3e6, #2b668e);
  box-shadow: 0px 0.4px 3.5px rgb(46, 98, 219);
- 
+  z-index: 20;
 }
 
 
@@ -227,7 +245,7 @@ export default {
  margin-right: 40px;
  display: flex;
  gap: 170px;
- 
+ border: solid red;
 }
 
 
@@ -248,6 +266,7 @@ export default {
  outline: none;
  border: none;
  padding-right: 6px;
+z-index: 999;
 }
 
 .hamburger .bar,
@@ -296,10 +315,13 @@ export default {
  border-radius: 8px;
  box-shadow: 3px 3px rgba(1, 87, 74, 0.4);
  transition: 0.4s ease-out;
+ 
 }
 
 .mobile-nav.is-active {
- left: 0;
+  left: 0;
+  background-color: rgba(169, 169, 169, 0.8);
+  z-index: 999;
 }
 
 .mb-nav-btn {
@@ -485,7 +507,169 @@ export default {
 </style>
 
 <style>
-body{
-  background-color:#f8f3e6;
+@-webkit-keyframes animatetop {
+	from {
+		top: -300px;
+		opacity: 0;
+	}
+	to {
+		top: 0;
+		opacity: 1;
+	}
 }
+@keyframes animatetop {
+	from {
+		top: -300px;
+		opacity: 0;
+	}
+	to {
+		top: 0;
+		opacity: 1;
+	}
+}
+@-webkit-keyframes zoomIn {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale3d(0.3, 0.3, 0.3);
+		transform: scale3d(0.3, 0.3, 0.3);
+	}
+	50% {
+		opacity: 1;
+	}
+}
+@keyframes zoomIn {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale3d(0.3, 0.3, 0.3);
+		transform: scale3d(0.3, 0.3, 0.3);
+	}
+	50% {
+		opacity: 1;
+	}
+}
+/*End Animations*/
+/*
+-- Start BackGround Animation 
+*/
+.area {
+  background: rgb(104, 111, 233);
+  background: -webkit-linear-gradient(to left, #a2a7ff, #6267c9);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: -2;
+  overflow-y: auto;
+}
+
+.circles {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.circles li {
+	position: absolute;
+	display: block;
+	list-style: none;
+	width: 20px;
+	height: 20px;
+	background: rgba(255, 255, 255, 0.2);
+	animation: animate 25s linear infinite;
+	bottom: -150px;
+}
+
+.circles li:nth-child(1) {
+	left: 25%;
+	width: 80px;
+	height: 80px;
+	animation-delay: 0s;
+}
+
+.circles li:nth-child(2) {
+	left: 10%;
+	width: 20px;
+	height: 20px;
+	animation-delay: 2s;
+	animation-duration: 12s;
+}
+
+.circles li:nth-child(3) {
+	left: 70%;
+	width: 20px;
+	height: 20px;
+	animation-delay: 4s;
+}
+
+.circles li:nth-child(4) {
+	left: 40%;
+	width: 60px;
+	height: 60px;
+	animation-delay: 0s;
+	animation-duration: 18s;
+}
+
+.circles li:nth-child(5) {
+	left: 65%;
+	width: 20px;
+	height: 20px;
+	animation-delay: 0s;
+}
+
+.circles li:nth-child(6) {
+	left: 75%;
+	width: 110px;
+	height: 110px;
+	animation-delay: 3s;
+}
+
+.circles li:nth-child(7) {
+	left: 35%;
+	width: 150px;
+	height: 150px;
+	animation-delay: 7s;
+}
+
+.circles li:nth-child(8) {
+	left: 50%;
+	width: 25px;
+	height: 25px;
+	animation-delay: 15s;
+	animation-duration: 45s;
+}
+
+.circles li:nth-child(9) {
+	left: 20%;
+	width: 15px;
+	height: 15px;
+	animation-delay: 2s;
+	animation-duration: 35s;
+}
+
+.circles li:nth-child(10) {
+	left: 85%;
+	width: 150px;
+	height: 150px;
+	animation-delay: 0s;
+	animation-duration: 11s;
+}
+
+@keyframes animate {
+	0% {
+		transform: translateY(0) rotate(0deg);
+		opacity: 1;
+		border-radius: 0;
+	}
+
+	100% {
+		transform: translateY(-1000px) rotate(720deg);
+		opacity: 0;
+		border-radius: 50%;
+	}
+}
+/*
+-- End BackGround Animation 
+*/
 </style>
+
