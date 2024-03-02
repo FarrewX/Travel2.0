@@ -31,9 +31,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/planner', function () {
+    Route::get('/page', function () {
         return Inertia::render('start/UserLocation');
-    })->name('Planner');
+    })->name('page');
     
 });
 
@@ -71,8 +71,8 @@ Route::get('/profile-photos/{filename}', function ($filename) {
     return response()->file($path);
 });
 
-Route::get('/page', function () {
-    return Inertia::render('start/UserLocation');
-})->name('page');
+Route::get('/detailpage', function () {
+    return Inertia::render('Reserve');
+})->name('detailpage');
 
 // php artisan storage:link
