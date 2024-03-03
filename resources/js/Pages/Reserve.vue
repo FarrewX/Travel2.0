@@ -97,7 +97,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1;
     transform: translateY(100px);
 }
 
