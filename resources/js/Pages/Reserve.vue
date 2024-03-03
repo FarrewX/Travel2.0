@@ -11,16 +11,16 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 
   <div class="body-page">
     <div class="card-container" v-if="$page.props.auth.user">
-      <div class="d-card" v-for="detail in details" :key="detail.id">
+      <div class="d-card" v-for="favplace in details.favplace" :key="favplace.id">
         <div class="face face1" >
           <div class="content">
-            <h3>{{ detail.id }}</h3>
+            <h3>{{ favplace.id }}</h3>
           </div>
         </div>
         <div class="face face2">
           <div class="content">
-            <p style="color: black; z-index: 1;">{{ detail.place_name }}</p>
-            <p></p>
+            <p style="color: black; z-index: 1;">{{ favplace.place_name }}</p>
+            <!-- แสดงรายละเอียดเพิ่มเติมของสถานที่ตามที่คุณต้องการ -->
           </div>
         </div>
       </div>  
@@ -97,6 +97,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
     transform: translateY(100px);
 }
 
