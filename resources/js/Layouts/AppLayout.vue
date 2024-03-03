@@ -89,11 +89,11 @@ const logout = () => {
 
         <button class="hamburger" @click="toggleMobileMenu"><div class="bar"></div></button>
         <div class="links">
-          <NavLink :href="route('home')" :active="route().current('home')" style="color: #ffffff;">Home</NavLink>
-          <NavLink :href="route('Contact')" :active="route().current('Contact')" style="color: #ffffff;">Contact</NavLink>
-          <NavLink :href="route('popular')" :active="route().current('popular')" style="color: #ffffff;">PopularPlaces</NavLink>
-          <NavLink :href="route('page')" :active="route().current('page')" style="color: #ffffff;">Start</NavLink>
-          <NavLink :href="route('detailpage')" :active="route().current('detailpage')" style="color: #ffffff;">Details</NavLink>
+          <NavLink :href="route('home')" :active="route().current('home')" style="color: #ffffff; font-size: 16px;">Home</NavLink>
+          <NavLink :href="route('Contact')" :active="route().current('Contact')" style="color: #ffffff; font-size: 16px;">Contact</NavLink>
+          <NavLink :href="route('popular')" :active="route().current('popular')" style="color: #ffffff; font-size: 16px;">PopularPlaces</NavLink>
+          <NavLink :href="route('page')" :active="route().current('page')" style="color: #ffffff; font-size: 16px;">Start</NavLink>
+          <NavLink :href="route('detailpage')" :active="route().current('detailpage')" style="color: #ffffff; font-size: 16px;">Details</NavLink>
 
         </div>
         <div class="s-l-btn">
@@ -220,11 +220,10 @@ export default {
 <style scoped>
 
 .nav {
- z-index: 99;
+ z-index: 999;
  left: 0;
  top: 0;
  width: 100%;
- overflow-y: auto;
 }
 
 .nav-inner {
@@ -233,10 +232,10 @@ export default {
  display: flex;
  justify-content: space-between;
  align-items: center;
- padding: 0 16px;
  background-image: linear-gradient(to right, #78d3e6, #2b668e);
  box-shadow: 0px 0.4px 3.5px rgb(46, 98, 219);
-  z-index: 20;
+z-index: 999;
+
 }
 
 
@@ -245,7 +244,6 @@ export default {
  margin-right: 40px;
  display: flex;
  gap: 170px;
- border: solid red;
 }
 
 
@@ -267,6 +265,7 @@ export default {
  border: none;
  padding-right: 6px;
 z-index: 999;
+
 }
 
 .hamburger .bar,
@@ -557,8 +556,9 @@ z-index: 999;
   width: 100vw;
   height: 100vh;
   position: fixed;
-  z-index: -2;
-  overflow-y: auto;
+  z-index: -3;
+  top: 0;
+  border: solid red;
 }
 
 .circles {

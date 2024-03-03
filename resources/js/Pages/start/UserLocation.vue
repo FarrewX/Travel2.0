@@ -40,8 +40,8 @@
                 />
             </div>
         </div>
-    <section id="map" style="background-image: linear-gradient(to right, #a6bef5, #3c5797);"></section>
-    <section id="list" style="background-image: linear-gradient(to top, #a6c2bb, #3fb094);">
+        <section id="map" style="background-image: url('https://i.pinimg.com/originals/41/3c/22/413c224cd9f9760676b598939379a6e6.gif');"></section>
+        <section id="list" style="background-image: linear-gradient(to top, #a6c2bb, #3fb094);">
         <div class="content">
             <h1 class="list-title">Restaurants, Hotels <br> around you</h1>
             <div class="dropdown" >
@@ -59,7 +59,7 @@
                             <div class="address">{{ place.ADress }} </div>
                             <div class="phone">{{ place.phone }} </div> <br>
                             <div class="ranking">{{ place.ranking }} </div> <br>
-                            <div class="website" v-if="place.website"><a :href="place.website">website</a></div>
+                            <div class="website" v-if="place.website"><a target="_blank" :href="place.website">website</a></div>
                             <button @click="addToFavorites({name:place.name, address:place.ADress})">Add</button>
                         </div>
                 </div>

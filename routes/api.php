@@ -6,6 +6,10 @@ use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\UserLocation;
 use App\Http\Controllers\FavPlaceController;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Fortify\Fortify;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes

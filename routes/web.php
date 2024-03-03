@@ -26,14 +26,20 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', ])->group(function () {
     Route::get('/page', function () {
         return Inertia::render('start/UserLocation');
     })->name('page');
+
+    Route::get('/geocode', function () {
+        $response = Http::get('https://maps.googleapis.com/maps/api/geocode/json', [
+            'address' => request('address'),
+            'key' => config('services.google.maps.api_key'), // Replace with your API key
+            
+        ]);
+    
+        return $response->json();
+    });
     
 });
 
@@ -80,7 +86,7 @@ Route::get('/UX', function () {
 })->name('UX');
 // php artisan storage:link
 
-Route::middleware('auth:sanctum')->get('/geocode', function () {
+/*Route::middleware('auth:sanctum')->get('/geocode', function () {
     $response = Http::get('https://maps.googleapis.com/maps/api/geocode/json', [
         'address' => request('address'),
         'key' => config('services.google.maps.api_key'), // Replace with your API key
@@ -88,4 +94,4 @@ Route::middleware('auth:sanctum')->get('/geocode', function () {
     ]);
 
     return $response->json();
-});
+});*/

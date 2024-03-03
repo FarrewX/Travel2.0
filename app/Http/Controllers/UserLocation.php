@@ -43,15 +43,23 @@ class UserLocation extends Controller
         ]);
     
         // Save restaurant details if available
-        $restaurants = $request->input('favPlaces');
-        if ($restaurants) {
-            foreach ($restaurants as $restaurant) {
-                Restaurant::create([
-                    'fav_place_id' => $favPlace->id,
-                    'name' => $restaurant['name'],
-                    'address' => $restaurant['address'],
-                ]);
-            }
+        foreach ($request->input('favPlaces.hotels') as $hotel) {
+            Hotels::create([
+                'user_id' => auth()->user()->id,
+                'fav_place_id' => $favPlace->id,
+                'name' => $hotel['name'],
+                'address' => $hotel['address'],
+            ]);
+        }
+
+        // Save restaurant details
+        foreach ($request->input('favPlaces.restaurants') as $restaurant) {
+            Restaurants::create([
+                'user_id' => auth()->user()->id,
+                'fav_place_id' => $favPlace->id,
+                'name' => $restaurant['name'],
+                'address' => $restaurant['address'],
+            ]);
         }
     
         // Save stay details

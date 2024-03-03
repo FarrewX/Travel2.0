@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\FavPlace;
+use App\Models\User;
+use App\Models\Hotel;
+use App\Models\Restaurant;
+use App\Models\UserDetails;
 use Illuminate\Http\Request;
+use HasApiTokens;
 
 class FavPlaceController extends Controller
 {
@@ -12,7 +17,7 @@ class FavPlaceController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -36,13 +41,23 @@ class FavPlaceController extends Controller
      */
     public function show(Request $request)
     {
-        $favplace = FavPlace::findOrFail($request);
+        $favplace = FavPlace::all();
+        $user = User::all();
+        $hotel = Hotel::all();
+        $restaurant = Restaurant::all();
+        $userDetails = UserDetails::all();
+    
         return response()->json([
-            'message' => 'favplace retrieved successfully',
-            'data' => $favplace
+            'message' => 'Data retrieved successfully',
+            'favplace' => $favplace,
+            'user' => $user,
+            'hotel' => $hotel,
+            'restaurant' => $restaurant,
+            'userDetails' => $userDetails
         ], 200);
     }
-
+    
+    
     /**
      * Show the form for editing the specified resource.
      */

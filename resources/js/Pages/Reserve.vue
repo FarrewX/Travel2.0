@@ -3,7 +3,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 </script>
 
 <template>
-  <AppLayout></AppLayout>
+  <AppLayout />
   <div class="head-page">
     <img style="border-radius: 50%;" :src="$page.props.auth.user.profile_photo_url">
     <div>{{ $page.props.auth.user.name }}</div>
@@ -14,12 +14,12 @@ import AppLayout from '@/Layouts/AppLayout.vue';
       <div class="d-card" v-for="detail in details" :key="detail.id">
         <div class="face face1" >
           <div class="content">
-            <h3>{{ detail.goto }}</h3>
+            <h3>{{ detail.id }}</h3>
           </div>
         </div>
         <div class="face face2">
           <div class="content">
-            <p>{{ detail.phone }}</p>
+            <p style="color: black; z-index: 1;">{{ detail.place_name }}</p>
             <p></p>
           </div>
         </div>
@@ -43,11 +43,9 @@ export default {
   methods: {
     async fetchDetails() {
       try {
-        const response = await axios.get('/api/details');
-        const allDetails = response.data;
-        const userEmail = this.$page.props.auth.user.email; // Get logged-in user's email
-        // Filter details based on user's email
-        this.details = allDetails.filter(detail => detail.email === userEmail);
+        const response = await axios.get('/api/favplace');
+        this.details = response.data;
+        console.log(this.details)
       } catch (error) {
         console.error('Error fetching details:', error);
         alert('Error fetching details. Please try again later.');

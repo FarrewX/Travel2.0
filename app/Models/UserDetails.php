@@ -17,3 +17,4 @@ class UserDetails extends Model
         return $this->hasMany(FavPlace::class);
     }
 }
+

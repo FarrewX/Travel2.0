@@ -12,6 +12,9 @@
     // import required modules
     import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules'
 
+    import NavLink from '@/Components/NavLink.vue';
+
+
     export default {
     components: {
         Swiper,
@@ -28,24 +31,23 @@
 
 <template>
 
-  <AppLayout />
     <div class="bg">
-     
+     <AppLayout />
       <img class="bg-img" src="https://wallpapercrafter.com/desktop1/630619-nature-pier-lake-mountain-calm-stars-night-2K.jpg" alt="">
       <div class="content absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div class="Ttext">
           <h1>Travel Planer</h1>
           <h2>Make your own Travel!</h2><br><br><br><br><br>
-          <button
-              type="button"
-              class="inline-block rounded border-2 border-white px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:border-white hover:bg-neutral-500 hover:bg-opacity-10 hover:text-white focus:border-white focus:text-white focus:outline-none focus:ring-0 active:border-white active:text-white dark:border-white dark:text-white dark:hover:border-white dark:hover:bg-neutral-100 dark:hover:bg-opacity-10 dark:hover:text-white dark:focus:border-white dark:focus:text-white dark:active:border-white dark:active:text-white"
+          <NavLink
+              type="button" :href="route('page')" :active="route().current('page')"
+              class="inline-block rounded border-2 border-white px-8 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:border-white hover:bg-neutral-500 hover:bg-opacity-10 hover:text-white focus:border-white focus:text-white focus:outline-none focus:ring-0 active:border-white active:text-white dark:border-white dark:text-white dark:hover:border-white dark:hover:bg-neutral-100 dark:hover:bg-opacity-10 dark:hover:text-white dark:focus:border-white dark:focus:text-white dark:active:border-white dark:active:text-white"
   data-te-ripple-init>
               Get Start
               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
         viewBox="0 0 24 24" class="w-6 h-6 ml-2">
         <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
     </svg>
-          </button>
+  </NavLink>
         </div>
         <div>
           
@@ -82,15 +84,19 @@
 
 <style>
 .bg {
-  width: 100%;
+  width: 100vw;
   z-index: -1;
-
+  overflow-y: auto;
 }
 
-.bg-img{
+.bg-img {
   filter: brightness(50%);
 }
-
+.bg-img {
+    width: 100vw;
+    height: 100%;
+    object-fit: cover;
+}
 
 .video-bg {
   top: 0;
@@ -179,11 +185,7 @@ body {
   border-radius: 10px;
   -webkit-box-reflect: below 1px linear-gradient(transparent,transparent,#0003);
 }
-.bg-img {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-}
+
 
 @media (max-width: 1500px) {
   
