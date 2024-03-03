@@ -1,7 +1,8 @@
-<!--ย้ายไปtest.vue ลองทำในนั้นก่อน-->
+<script setup>
+    import NavLink from '@/Components/NavLink.vue';
+</script>
 <script>
     import { Swiper, SwiperSlide } from 'swiper/vue'
-    
     import AppLayout from '@/Layouts/AppLayout.vue';
     //Import Swiper styles
     import 'swiper/css'
@@ -14,12 +15,12 @@
 
     import NavLink from '@/Components/NavLink.vue';
 
-
     export default {
     components: {
         Swiper,
         SwiperSlide,
-        AppLayout
+        AppLayout,
+        
     },
     setup() {
         return {
@@ -39,15 +40,15 @@
           <h1>Travel Planer</h1>
           <h2>Make your own Travel!</h2><br><br><br><br><br>
           <NavLink
-              type="button" :href="route('page')" :active="route().current('page')"
+              :href="route('page')" :active="route().current('page')"
               class="inline-block rounded border-2 border-white px-8 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:border-white hover:bg-neutral-500 hover:bg-opacity-10 hover:text-white focus:border-white focus:text-white focus:outline-none focus:ring-0 active:border-white active:text-white dark:border-white dark:text-white dark:hover:border-white dark:hover:bg-neutral-100 dark:hover:bg-opacity-10 dark:hover:text-white dark:focus:border-white dark:focus:text-white dark:active:border-white dark:active:text-white"
-  data-te-ripple-init>
-              Get Start
+                data-te-ripple-init>
+              <button>Get Start</button>
               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-        viewBox="0 0 24 24" class="w-6 h-6 ml-2">
-        <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-    </svg>
-  </NavLink>
+                viewBox="0 0 24 24" class="w-6 h-6 ml-2">
+                <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+           </Navlink>
         </div>
         <div>
           

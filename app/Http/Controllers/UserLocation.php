@@ -11,6 +11,29 @@ use Illuminate\Http\Request;
 
 class UserLocation extends Controller
 {
+    public function register(Request $request) {
+        $field = $request-> validate([
+            'name' => 'required|string',
+            'email' => 'required|string|unique:users,email',
+            'password' => 'required|string|confirmed',
+        ]);
+
+        $user = User::create([
+            'name' => $field['name'],
+            'email' => $field['email'],
+            'password' => bcrypt($field['password']),
+        ]);
+
+        $token = $user->createToken('mytoken')->plainTextToken;
+
+        $response = [
+            'user' => $user,
+            'token' => $token,
+        ];
+
+        return response($response, 201);
+    }
+
     /**
      * Display a listing of the resource.
      */

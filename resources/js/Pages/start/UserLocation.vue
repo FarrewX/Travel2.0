@@ -4,7 +4,7 @@
 <Head title="Planner"></head>
 <div class="container">
     <div class="home-btn" style="z-index: 1; color: black; position: absolute; top: 10px; margin: 5px;">
-        <NavLink :href="route('home')">
+        <NavLink :href="route('home')" :active="route().current('home')">
             <span class="material-icons">
                 home
             </span>

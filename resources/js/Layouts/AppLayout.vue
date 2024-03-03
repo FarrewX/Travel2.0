@@ -89,7 +89,7 @@ const logout = () => {
 
         <button class="hamburger" @click="toggleMobileMenu"><div class="bar"></div></button>
         <div class="links">
-          <NavLink :href="route('home')" :active="route().current('home')" style="color: #ffffff; font-size: 16px;">Home</NavLink>
+          <NavLink :href="route('home')" :active="route().current('home')" style="color: #ffffff; font-size: 16px; font-weight: bold;">Home</NavLink>
           <NavLink :href="route('Contact')" :active="route().current('Contact')" style="color: #ffffff; font-size: 16px;">Contact</NavLink>
           <NavLink :href="route('popular')" :active="route().current('popular')" style="color: #ffffff; font-size: 16px;">PopularPlaces</NavLink>
           <NavLink :href="route('page')" :active="route().current('page')" style="color: #ffffff; font-size: 16px;">Start</NavLink>
@@ -275,7 +275,7 @@ z-index: 999;
  display: block;
  width: 100%;
  height: 5px;
- background: linear-gradient(to right, #5f5659, #414040);
+ background: linear-gradient(to right, #ffffff, #999999);
  margin: 6px 0px;
  transition: 0.4s;
  border-radius: 10px;
@@ -285,6 +285,7 @@ z-index: 999;
 
 .hamburger.is-active .bar {
  opacity: 0;
+ color: black;
 }
 
 .hamburger.is-active::before {
@@ -556,9 +557,8 @@ z-index: 999;
   width: 100vw;
   height: 100vh;
   position: fixed;
-  z-index: -3;
+  z-index: -1;
   top: 0;
-  border: solid red;
 }
 
 .circles {

@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\FavPlace;
-use App\Models\User;
-use App\Models\Hotel;
-use App\Models\Restaurant;
-use App\Models\UserDetails;
 use Illuminate\Http\Request;
-use HasApiTokens;
+
 
 class FavPlaceController extends Controller
 {
@@ -42,18 +38,10 @@ class FavPlaceController extends Controller
     public function show(Request $request)
     {
         $favplace = FavPlace::all();
-        $user = User::all();
-        $hotel = Hotel::all();
-        $restaurant = Restaurant::all();
-        $userDetails = UserDetails::all();
     
         return response()->json([
             'message' => 'Data retrieved successfully',
             'favplace' => $favplace,
-            'user' => $user,
-            'hotel' => $hotel,
-            'restaurant' => $restaurant,
-            'userDetails' => $userDetails
         ], 200);
     }
     
@@ -63,22 +51,33 @@ class FavPlaceController extends Controller
      */
     public function edit(no $no)
     {
-        //
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, no $no)
+    public function update(Request $request, no $no, FavPlace $favplace)
     {
-        //
+        $validated = $request->validate([
+            'favplace' => 'reqired|string|max:50',
+            'user' => 'required|string|max:50',
+            'hotel' => 'required|string|max:50',
+            'restaurant' => 'required|string|max:50',
+            'userDetails' => 'required|string|max:50',
+        ]);
+
+        $favplace->update($validated);
+
+        return response()->json(['message'=>'FavPlaceUpdated'],200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(no $no)
+    public function destroy(FavPlace $favplace)
     {
-        //
+        $favplace->delete();
+        return response()->json(['message'=>'FavPlaceDeleted'],200);
     }
 }

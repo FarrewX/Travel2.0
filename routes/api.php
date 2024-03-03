@@ -2,13 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\UserLocation;
 use App\Http\Controllers\FavPlaceController;
+use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\HotelController;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Laravel\Fortify\Fortify;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +24,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/favplace', [FavPlaceController::class, 'show']);
+Route::get('/restaurant', [RestaurantController::class, 'show']);
+Route::get('/hotel', [HotelController::class, 'show']);
 
 Route::put('/submit-data', [UserLocation::class, 'store'])->name('submit-data');
+
+Route::post('/register', [UserLocation::class, 'register']);
+
+Route::get('/favplaces', [FavPlaceController::class, 'show'])->middleware('auth:sanctum');
+Route::post('/favplace', [FavPlaceController::class, 'update']);
+Route::delete('/favplace', [FavPlaceController::class, 'destroy']);

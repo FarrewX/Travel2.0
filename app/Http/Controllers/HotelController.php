@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\no;
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -34,9 +34,14 @@ class HotelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(no $no)
+    public function show(Request $request)
     {
-        //
+        $hotel = Hotel::all();
+    
+        return response()->json([
+            'message' => 'Data retrieved successfully',
+            'favplace' => $hotel,
+        ], 200);
     }
 
     /**

@@ -1,5 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import axios from 'axios';
+import Index from './API/Index.vue';
 </script>
 
 <template>
@@ -10,50 +12,67 @@ import AppLayout from '@/Layouts/AppLayout.vue';
   </div>
 
   <div class="body-page">
-    <div class="card-container" v-if="$page.props.auth.user">
-      <div class="d-card" v-for="favplace in details.favplace" :key="favplace.id">
-        <div class="face face1" >
+    <div class="card-container">
+      <div class="d-card" v-for="(detail, index) in details" :key="detail.favplace.id">
+        <div class="face face1">
           <div class="content">
-            <h3>{{ favplace.id }}</h3>
+            <img src="" alt="">
+            <h3>{{ detail.favplace.place_name }}</h3>
           </div>
         </div>
         <div class="face face2">
           <div class="content">
-            <p style="color: black; z-index: 1;">{{ favplace.place_name }}</p>
-            <!-- แสดงรายละเอียดเพิ่มเติมของสถานที่ตามที่คุณต้องการ -->
+            <p style="color: black; z-index: 1;">Hotel : {{ detail.hotel.favplace[index].name }}</p>
+            <p style="color: black; z-index: 1;">restaurant : {{detail.restaurant.favplace[index].name }}</p>
           </div>
         </div>
-      </div>  
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   data() {
     return {
-      details: []
+      details: [],
+      user: {},
     };
   },
-  mounted() {
-    this.fetchDetails();
+  async mounted() {
+    await this.fetchDetails();
   },
   methods: {
     async fetchDetails() {
-      try {
-        const response = await axios.get('/api/favplace');
-        this.details = response.data;
-        console.log(this.details)
-      } catch (error) {
-        console.error('Error fetching details:', error);
-        alert('Error fetching details. Please try again later.');
-      }
-    }
+  try {
+    const favplaceResponse = await axios.get('http://127.0.0.1:8000/api/favplace');
+
+    const favplace_hotel = await Promise.all(favplaceResponse.data.favplace.map(async (item) => {
+      const hotel = (await axios.get(`http://127.0.0.1:8000/api/hotel?fav_place_id=${item.id}`)).data;
+      return {
+        favplace: item,
+        hotel: hotel,
+      };
+    }));
+
+    const all_data = await Promise.all(favplace_hotel.map(async (item) => {
+      const restaurant = (await axios.get(`http://127.0.0.1:8000/api/restaurant?fav_place_id=${item.favplace.id}`)).data;
+      return {
+        favplace: item.favplace,
+        hotel: item.hotel,
+        restaurant: restaurant
+      };
+    }));
+
+    this.details = all_data;
+    console.log(all_data);
+    this.user = favplaceResponse.data.user.length > 0 ? favplaceResponse.data.user[0] : {};
+  } catch (error) {
+
+  }
+}
   }
 };
-
 </script>
 
 <style>
@@ -61,6 +80,9 @@ export default {
   display: grid;
   justify-content: center;
   text-align: center;
+  padding-top: 15px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
 }
 
 .body-page{
@@ -70,7 +92,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: consolas;
 }
 
 .card-container{
@@ -79,6 +100,7 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  height: 100%;
 }
 
 .card-container .d-card{
@@ -93,7 +115,7 @@ export default {
 
 .card-container .d-card .face.face1{
     position: relative;
-    background: #36b5d4;
+    background: #5cc7e2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,7 +124,7 @@ export default {
 }
 
 .card-container .d-card:hover .face.face1{
-    background: #0d4b6d;
+    background: #065e8e;
     transform: translateY(0);
 }
 
@@ -122,7 +144,7 @@ export default {
 .card-container .d-card .face.face1 .content h3{
     margin: 10px 0 0;
     padding: 0;
-    color: #fff;
+    color: #ffffff;
     text-align: center;
     font-size: 1.5em;
 }
