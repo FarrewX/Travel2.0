@@ -17,4 +17,5 @@ class Restaurant extends Model
     {
         return $this->belongsTo(FavPlace::class, 'fav_place_id');
     }
+
 }

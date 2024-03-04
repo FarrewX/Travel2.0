@@ -20,7 +20,7 @@ class FavPlace extends Model
 
     public function hotels()
     {
-        return $this->hasMany(Hotel::class);
+        return $this->hasMany(hotel::class);
     }
 
     public function restaurants()
@@ -32,4 +32,5 @@ class FavPlace extends Model
     {
         return $this->hasMany(Stay::class);
     }
+
 }

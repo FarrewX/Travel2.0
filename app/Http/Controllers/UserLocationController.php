@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FavPlace;
+use App\Models\UserLocation;
 use App\Models\UserDetails;
+use App\Models\FavPlace;
 use App\Models\Stay;
-use App\Models\Hotel;
+use App\Models\hotel;
 use App\Models\Restaurant;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreUserLocationRequest;
+use App\Http\Requests\UpdateUserLocationRequest;
 
-class UserLocation extends Controller
+class UserLocationController extends Controller
 {
+
     public function register(Request $request) {
         $field = $request-> validate([
             'name' => 'required|string',
@@ -53,7 +56,7 @@ class UserLocation extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserLocationRequest $request)
     {
         $userDetails = UserDetails::create([
             'first_name' => $request->input('first_name'),
@@ -64,26 +67,41 @@ class UserLocation extends Controller
         $favPlace = FavPlace::create([
             'place_name' => $request->input('selected_place_name'), // Corrected attribute name
         ]);
+        \Log::info($favPlace);
+
+        $request->input('detailsData');
+        \Log::info($request);
     
-        // Save restaurant details if available
-        foreach ($request->input('favPlaces.hotels') as $hotel) {
-            Hotels::create([
-                'user_id' => auth()->user()->id,
-                'fav_place_id' => $favPlace->id,
-                'name' => $hotel['name'],
-                'address' => $hotel['address'],
-            ]);
+        foreach ($request->input('detailsData') as $type) {
+            \Log::info("type is" . $type);
+            if ($type === 'restaurants') {
+                // Save restaurant details
+                if ($request->has('favPlaces')) {
+                    foreach ($request->input('favPlaces') as $restaurant) {
+                        Restaurant::create([
+                            //'user_id' => auth()->user()->id,
+                            'fav_place_id' => $favPlace->id,
+                            'name' => $restaurant['name'],
+                            'address' => $restaurant['address'],
+                        ]);
+                    }
+                }
+            } elseif ($type === 'hotels') {
+                // Save hotel details
+                if ($request->has('favPlaces')) {
+                    foreach ($request->input('favPlaces') as $hotel) {
+                        Hotels::create([
+                            //'user_id' => auth()->user()->id,
+                            'fav_place_id' => $favPlace->id,
+                            'name' => $hotel['name'],
+                            'address' => $hotel['address'],
+                        ]);
+                    }
+                }
+            }
         }
 
-        // Save restaurant details
-        foreach ($request->input('favPlaces.restaurants') as $restaurant) {
-            Restaurants::create([
-                'user_id' => auth()->user()->id,
-                'fav_place_id' => $favPlace->id,
-                'name' => $restaurant['name'],
-                'address' => $restaurant['address'],
-            ]);
-        }
+    
     
         // Save stay details
         $stayDuration = strtotime($request->input('returnDate')) - strtotime($request->input('dept_date'));
@@ -95,13 +113,12 @@ class UserLocation extends Controller
         ]);
     
         return response()->json(['message' => 'Data saved successfully']);
-    
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(no $no)
+    public function show(UserLocation $userLocation)
     {
         //
     }
@@ -109,7 +126,7 @@ class UserLocation extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(no $no)
+    public function edit(UserLocation $userLocation)
     {
         //
     }
@@ -117,7 +134,7 @@ class UserLocation extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, no $no)
+    public function update(UpdateUserLocationRequest $request, UserLocation $userLocation)
     {
         //
     }
@@ -125,7 +142,7 @@ class UserLocation extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(no $no)
+    public function destroy(UserLocation $userLocation)
     {
         //
     }

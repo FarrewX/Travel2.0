@@ -22,8 +22,8 @@ import Index from './API/Index.vue';
         </div>
         <div class="face face2">
           <div class="content">
-            <p style="color: black; z-index: 1;">Hotel : {{ detail.hotel.favplace[index].name }}</p>
-            <p style="color: black; z-index: 1;">restaurant : {{detail.restaurant.favplace[index].name }}</p>
+            <p style="color: black; z-index: 1;">Hotel : {{ detail.hotel.favplace.name }}</p>
+            <p style="color: black; z-index: 1;">restaurant : {{detail.restaurant.favplace.name }}</p>
           </div>
         </div>
       </div>

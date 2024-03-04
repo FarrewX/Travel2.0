@@ -194,8 +194,8 @@ body {
   width: 100%;
   z-index: -1;
   height: 20rem;
-
 }
+
   .carousel {
     display: flex;
     justify-content: center; 
@@ -220,6 +220,30 @@ body {
     position: relative; 
     z-index: 2; 
   }
+}
+
+@media (min-width: 1200px){
+  
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 1025px) {
+
+}
+
+@media (max-width: 860px) {
+
+}
+
+@media (max-width: 660px) {
+
+}
+
+@media (max-width: 380px) {
+  
 }
 
 </style>

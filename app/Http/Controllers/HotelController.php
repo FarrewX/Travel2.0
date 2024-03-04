@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Hotel;
-use Illuminate\Http\Request;
+use App\Models\hotel;
+use App\Http\Requests\StorehotelRequest;
+use App\Http\Requests\UpdatehotelRequest;
 
 class HotelController extends Controller
 {
@@ -26,7 +27,7 @@ class HotelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorehotelRequest $request)
     {
         //
     }
@@ -34,9 +35,9 @@ class HotelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show(hotel $hotel)
     {
-        $hotel = Hotel::all();
+        $hotel = hotel::all();
     
         return response()->json([
             'message' => 'Data retrieved successfully',
@@ -47,7 +48,7 @@ class HotelController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(no $no)
+    public function edit(hotel $hotel)
     {
         //
     }
@@ -55,7 +56,7 @@ class HotelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, no $no)
+    public function update(UpdatehotelRequest $request, hotel $hotel)
     {
         //
     }
@@ -63,7 +64,7 @@ class HotelController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(no $no)
+    public function destroy(hotel $hotel)
     {
         //
     }

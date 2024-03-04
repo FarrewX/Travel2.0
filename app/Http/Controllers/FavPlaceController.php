@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\FavPlace;
-use Illuminate\Http\Request;
-
+use App\Http\Requests\StoreFavPlaceRequest;
+use App\Http\Requests\UpdateFavPlaceRequest;
+use App\Http\Requests\ShowFavPlaceRequest;
 
 class FavPlaceController extends Controller
 {
@@ -13,7 +14,7 @@ class FavPlaceController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -27,7 +28,7 @@ class FavPlaceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreFavPlaceRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class FavPlaceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show(ShowFavPlaceRequest $request, FavPlace $favplace)
     {
         $favplace = FavPlace::all();
     
@@ -45,37 +46,38 @@ class FavPlaceController extends Controller
         ], 200);
     }
     
-    
+
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(no $no)
+    public function edit(FavPlace $favPlace)
     {
-        
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, no $no, FavPlace $favplace)
+    public function update(UpdateFavPlaceRequest $request, no $no, FavPlace $favplace)
     {
-        $validated = $request->validate([
-            'favplace' => 'reqired|string|max:50',
-            'user' => 'required|string|max:50',
-            'hotel' => 'required|string|max:50',
-            'restaurant' => 'required|string|max:50',
-            'userDetails' => 'required|string|max:50',
-        ]);
-
-        $favplace->update($validated);
-
-        return response()->json(['message'=>'FavPlaceUpdated'],200);
+        
+            $validated = $request->validate([
+                'favplace' => 'reqired|string|max:50',
+                'user' => 'required|string|max:50',
+                'hotel' => 'required|string|max:50',
+                'restaurant' => 'required|string|max:50',
+                'userDetails' => 'required|string|max:50',
+            ]);
+    
+            $favplace->update($validated);
+    
+            return response()->json(['message'=>'FavPlaceUpdated'],200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FavPlace $favplace)
+    public function destroy(FavPlace $favPlace)
     {
         $favplace->delete();
         return response()->json(['message'=>'FavPlaceDeleted'],200);

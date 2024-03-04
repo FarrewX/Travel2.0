@@ -59,6 +59,23 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function favPlace()
+    {
+        return $this->hasMany(FavPlace::class);
+    }
+    public function hotels()
+    {
+        return $this->hasMany(hotel::class);
+    }
+    public function restaurants()
+    {
+        return $this->hasMany(Restaurant::class);
+    }
+
+    public function userDetails()
+    {
+        return $this->hasMany(UserDetails::class);
+    }
 
 }
 
