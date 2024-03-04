@@ -8,6 +8,8 @@ use App\Models\FavPlace;
 use App\Models\Stay;
 use App\Models\hotel;
 use App\Models\Restaurant;
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserLocationRequest;
 use App\Http\Requests\UpdateUserLocationRequest;
 

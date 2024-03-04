@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/vue3';
 </script>
 
 <template>
-  <Head title="Contact"></head>
+  <Head title="Contact"></Head>
     <AppLayout />
       <div class="container">
         <div class="grid-item" v-for="(person, index) in persons" :key="index">

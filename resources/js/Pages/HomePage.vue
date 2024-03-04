@@ -3,6 +3,7 @@
 </script>
 <script>
     import { Swiper, SwiperSlide } from 'swiper/vue'
+    import { Head } from '@inertiajs/vue3'
     import AppLayout from '@/Layouts/AppLayout.vue';
     //Import Swiper styles
     import 'swiper/css'
@@ -31,7 +32,7 @@
 </script>
 
 <template>
-
+  <Head title="Home"></Head>
     <div class="bg">
      <AppLayout />
       <img class="bg-img" src="https://wallpapercrafter.com/desktop1/630619-nature-pier-lake-mountain-calm-stars-night-2K.jpg" alt="">
@@ -71,9 +72,9 @@
             :autoplay="{ delay: 10000 }"
             class="mySwiper"
           >
-              <swiper-slide><img src="/PlaceImg/france.jpg" /></swiper-slide
-            ><swiper-slide><img src="/PlaceImg/hmm.png" /></swiper-slide
-            ><swiper-slide><img src="/PlaceImg/huh.png" /></swiper-slide
+              <swiper-slide><img src="/image/slide/clock_tower.jpg" /></swiper-slide
+            ><swiper-slide><img src="/image/slide/sea.jpg" /></swiper-slide
+            ><swiper-slide><img src="image/slide/tower.jpg" /></swiper-slide
             ><swiper-slide><img src="/PlaceImg/jerry.jpg" /></swiper-slide
             ><swiper-slide><img src="/PlaceImg/rome.jpg" /></swiper-slide
             ><swiper-slide><img src="/PlaceImg/venice.jpg" /></swiper-slide>

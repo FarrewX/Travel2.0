@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FavPlace;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreFavPlaceRequest;
 use App\Http\Requests\UpdateFavPlaceRequest;
 use App\Http\Requests\ShowFavPlaceRequest;
@@ -46,13 +47,19 @@ class FavPlaceController extends Controller
         ], 200);
     }
     
+    public function shows(Request $request)
+    {
+        $request = FavPlace::all();
+        
+        return $request;
+    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(FavPlace $favPlace)
+    public function edit(FavPlace $favPlace,Request $request)
     {
-        //
+       
     }
 
     /**

@@ -7,7 +7,7 @@ import Index from './API/Index.vue';
 <template>
   <AppLayout />
   <div class="head-page">
-    <img style="border-radius: 50%;" :src="$page.props.auth.user.profile_photo_url">
+    <img class="h-20 w-20" style="border-radius: 50%;" :src="$page.props.auth.user.profile_photo_url">
     <div>{{ $page.props.auth.user.name }}</div>
   </div>
 
@@ -22,8 +22,18 @@ import Index from './API/Index.vue';
         </div>
         <div class="face face2">
           <div class="content">
-            <p style="color: black; z-index: 1;">Hotel : {{ detail.hotel.favplace.name }}</p>
-            <p style="color: black; z-index: 1;">restaurant : {{detail.restaurant.favplace.name }}</p>
+            <p style="color: black; z-index: 1;">Hotel : </p>
+            <ul>
+              <li v-for="(restaurant, i) in detail.restaurant.favplace.filter(item => item.fav_place_id === detail.favplace.id)" :key="i">
+                {{ restaurant.name }} - {{ restaurant.address }}
+              </li>
+              </ul>
+            <p style="color: black; z-index: 1;">restaurant :  </p>
+            <ul>
+              <li v-for="(hotel, i) in detail.hotel.favplace.filter(item => item.fav_place_id === detail.favplace.id)" :key="i">
+                {{ hotel.name }} - {{ hotel.address }}
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -46,6 +56,25 @@ export default {
     async fetchDetails() {
   try {
     const favplaceResponse = await axios.get('http://127.0.0.1:8000/api/favplace');
+        const favplace_hotel_restaurant = await Promise.all(favplaceResponse.data.favplace.map(async (item) => {
+          // Example: Fetching additional data from restaurant API
+          const restaurantResponse = await axios.get(`http://127.0.0.1:8000/api/restaurant?fav_place_id=${item.id}`);
+          // Example: Fetching additional data from hotel API
+          const hotelResponse = await axios.get(`http://127.0.0.1:8000/api/hotel?fav_place_id=${item.id}`);
+
+          return {
+            favplace: item,
+            restaurant: restaurantResponse.data,
+            hotel: hotelResponse.data,
+          };
+        }));
+
+        this.details = favplace_hotel_restaurant;
+        console.log(this.details);
+    /*const response = await axios.get(`http://127.0.0.1:8000/api/restaurant?fav_place_id=${item.favplace.id}`);
+    this.details = response.data;
+    console.log(this.details);*/
+    /*const favplaceResponse = await axios.get('http://127.0.0.1:8000/api/favplace');
 
     const favplace_hotel = await Promise.all(favplaceResponse.data.favplace.map(async (item) => {
       const hotel = (await axios.get(`http://127.0.0.1:8000/api/hotel?fav_place_id=${item.id}`)).data;
@@ -66,7 +95,8 @@ export default {
 
     this.details = all_data;
     console.log(all_data);
-    this.user = favplaceResponse.data.user.length > 0 ? favplaceResponse.data.user[0] : {};
+    this.user = favplaceResponse.data.user.length > 0 ? favplaceResponse.data.user[0] : {};*/
+
   } catch (error) {
 
   }
@@ -155,7 +185,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 0px;
     box-sizing: border-box;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
     transform: translateY(-100px);
@@ -166,23 +196,28 @@ export default {
 }
 
 .card-container .d-card .face.face2 .content p{
-    margin: 0;
-    padding: 0;
+    color: red;
 }
 
 .card-container .d-card .face.face2 .content a{
-    margin: 15px 0 0;
     display:  inline-block;
     text-decoration: none;
     font-weight: 900;
     color: #333;
-    padding: 5px;
     border: 1px solid #333;
 }
 
 .card-container .d-card .face.face2 .content a:hover{
     background: #333;
     color: #fff;
+}
+
+.card-container .d-card .face.face2 .content {
+    display: none;
+}
+
+.card-container .d-card:hover .face.face2 .content {
+    display: block;
 }
 
 @media screen and (min-width: 768px) { /* ปรับขนาดหน้าจอตามต้องการ */
@@ -192,4 +227,5 @@ export default {
     gap: 20px;
   }
 }
+
 </style>

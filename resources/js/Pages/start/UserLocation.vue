@@ -2,6 +2,8 @@
 
 <template>
 <Head title="Planner"></head>
+
+<div class="mobile-alert" style="font-size: 32px;">กรุณาใช้แนวนอน</div>
 <div class="container">
     <div class="home-btn" style="z-index: 1; color: black; position: absolute; top: 10px; margin: 5px;">
         <NavLink :href="route('home')" :active="route().current('home')">
@@ -172,19 +174,26 @@ body {
     display: block;
     width: 450px;
   }
+  .mobile-alert{
+    display: none;
+  }
 }
 
 @media (max-width: 767px) { /*ยังทำไม่เสร็จ  เล็กสุด 653-fold 667-SE 740-S8+ */
   #list {
-    display: flexbox;
+    display: flex;
     width: 100%;
-    overflow-y: auto;
+    height: 500px;
+    font-size: 20px;
+    left: 100px;
     border: solid red;
+
   }
 
   #map {
-    display: flexbox;
-    width: 100%;
+    display: flex;
+    width: 1000px;
+    height: 380px;
     border: solid green;
 
     .modal_container {
@@ -192,38 +201,43 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%; 
-  }
+    }
 
   .modal {
     width: 100%;
-  }
+    }
 
   .card-container {
     display: flex;
     flex-wrap: wrap; 
     justify-content: center;
-  }
+    }
 
   .card {
     margin: 0 10px 20px;
-  }
+    }
 
   .list-title {
     font-size: 10px;
     color: black;
-  }
+    }
   }
 
   .container{
     display: flex;
   }
   .serch{
-    display: block;
+    display: grid;
     position: absolute;
-    width: 200px;
+    width: 0px;
+    
   }
   .in-txt{
-    width: 200px;
+    width: 100px;
+  }
+
+  .mobile-alert{
+    display: none;
   }
 }
 
@@ -257,14 +271,14 @@ body {
 .custom-dropdown {
     width: 200px; /* Set your desired width here */
     padding: 3px; /* Optional: Add padding for better visual appeal */
-    font-size: 16px; /* Optional: Adjust font size */
+    font-size: 14px; /* Optional: Adjust font size */
 }
 
 .content h1{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 45px;
+    font-size: 20px;
     padding: 15px 15px;
 }
 
@@ -310,6 +324,16 @@ body {
 
 .card .card-container .address{
     margin-bottom: 15px;
+}
+@media (max-width: 650px) {
+    *{
+        display: none;
+    }
+
+    .mobile-alert{
+        margin: auto;
+        display: block;
+    }
 }
 
 </style>

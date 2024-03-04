@@ -31,6 +31,6 @@ Route::put('/submit-data', [UserLocationController::class, 'store'])->name('subm
 
 Route::post('/register', [UserLocationController::class, 'register']);
 
-Route::get('/favplaces', [FavPlaceController::class, 'show'])->middleware('auth:sanctum');
+Route::get('/favplaces', [FavPlaceController::class, 'shows'])->middleware('auth:sanctum');
 Route::middleware('auth:sanctum')->post('/favplace', [FavPlaceController::class, 'update']);
 Route::middleware('auth:sanctum')->delete('/favplace', [FavPlaceController::class, 'destroy']);
